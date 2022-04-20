@@ -7,7 +7,9 @@ class AddIndicador extends React.Component {
     CalificacionCORFO : '',
     MisionUniversitaria : '',
     nombre : '',
+    TipoIndicador: '',
     eje : '',
+    Unidad : '',
     FuenteInformacion : ''
   }
 
@@ -17,7 +19,9 @@ class AddIndicador extends React.Component {
       CalificacionCORFO : this.state.CalificacionCORFO,
       MisionUniversitaria : this.state.MisionUniversitaria,
       nombre : this.state.nombre,
+      TipoIndicador: this.state.TipoIndicador,
       eje : this.state.eje,
+      Unidad : this.state.Unidad,
       FuenteInformacion : this.state.FuenteInformacion      
     })
   }
@@ -37,9 +41,17 @@ class AddIndicador extends React.Component {
         <input type="text" value={this.state.nombre} onChange={e => this.setState({
           nombre: e.target.value
         })}/>
-        <label>Eje al ue pertenece</label>
+        <label>Tipo de Indicador</label>
+        <input type="text" value={this.state.TipoIndicador} onChange={e => this.setState({
+          TipoIndicador: e.target.value
+        })}/>
+        <label>Eje al que pertenece</label>
         <input type="text" value={this.state.eje} onChange={e => this.setState({
           eje: e.target.value
+        })}/>
+         <label>Unidad de medida</label>
+        <input type="text" value={this.state.Unidad} onChange={e => this.setState({
+          Unidad: e.target.value
         })}/>
         <label>Fuente de Informacion</label>
         <input type="text" value={this.state.FuenteInformacion} onChange={e => this.setState({

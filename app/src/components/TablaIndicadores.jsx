@@ -22,7 +22,9 @@ export default function  TablaIndicadores() {
         <th>Calificación CORFO</th>
         <th>Misión Universitaria</th>
         <th>Nombre</th>
+        <th>Tipo de indicador</th>
         <th>Eje</th>
+        <th>Unidad</th>
         <th>Opciones</th>
       </tr>
     </thead>
@@ -32,7 +34,9 @@ export default function  TablaIndicadores() {
             <td>{indicador.CalificacionCORFO}</td>
             <td>{indicador.MisionUniversitaria}</td>
             <td>{indicador.nombre}</td>
+            <td>{indicador.TipoIndicador}</td>
             <td>{indicador.eje}</td>
+            <td>{indicador.Unidad}</td>
             <td>
               <button className="button muted-button">Edit</button>
               <button className="button muted-button">Delete</button>
