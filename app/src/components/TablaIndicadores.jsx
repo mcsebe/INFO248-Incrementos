@@ -15,6 +15,7 @@ export default function  TablaIndicadores() {
     fetchPosts();
   }, );
   
+
   return (
   <table>
     <thead>
@@ -39,7 +40,10 @@ export default function  TablaIndicadores() {
             <td>{indicador.Unidad}</td>
             <td>
               <button className="button muted-button">Edit</button>
-              <button className="button muted-button">Delete</button>
+              <button className="button muted-button" onClick={() => 
+                axios.delete(`http://localhost:4000/deleteindicadores/${indicador.id}`,
+                window.location.reload(true))
+                }>Delete</button>
             </td>
           </tr>
         ))

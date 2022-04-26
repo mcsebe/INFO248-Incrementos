@@ -24,8 +24,11 @@ app.post('/addindicadores', (req,res)=> {
     })
 })
 
-app.get('/deleteindicadores', (req,res)=> {
-    res.send('deleteindicadores')
+app.delete('/deleteindicadores/:id', (req,res)=> {
+    const DELETE_QUERY = `DELETE FROM indicadores where (id = '${req.params.id}')`
+    connection.query(DELETE_QUERY, (err, res) =>{
+        if(err) console.log(err)
+    })
 })
 
 app.listen(4000, ()=> {
