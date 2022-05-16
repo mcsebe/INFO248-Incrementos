@@ -20,24 +20,22 @@ export default function  TablaIndicadores() {
   <table>
     <thead>
       <tr>
-        <th>Calificación CORFO</th>
-        <th>Misión Universitaria</th>
+        <th>ID</th>
         <th>Nombre</th>
         <th>Tipo de indicador</th>
         <th>Eje</th>
-        <th>Unidad</th>
+        <th>Responsable</th>
         <th>Opciones</th>
       </tr>
     </thead>
     <tbody>
       {indicadores.map((indicador) => (
           <tr key={indicador.id}>
-            <td>{indicador.CalificacionCORFO}</td>
-            <td>{indicador.MisionUniversitaria}</td>
+            <td>{indicador.id}</td>
             <td>{indicador.nombre}</td>
             <td>{indicador.TipoIndicador}</td>
             <td>{indicador.eje}</td>
-            <td>{indicador.Unidad}</td>
+            <td>{indicador.Responsable}</td>
             <td>
               <button className="button muted-button">Edit</button>
               <button className="button muted-button" onClick={() => 
