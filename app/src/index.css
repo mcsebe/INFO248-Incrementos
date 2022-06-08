@@ -840,6 +840,10 @@ a.muted-button {
   color: #4e4e4e;
 }
 
+.delete {
+  background: #F98080;
+}
+
 .muted-button:hover, .muted-button:focus, .muted-button:active,
 a.muted-button:hover,
 a.muted-button:focus,

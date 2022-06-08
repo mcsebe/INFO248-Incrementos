@@ -16,7 +16,7 @@ class AddIndicador extends React.Component {
   }
 
   onAddClick = () => {
-    axios.post('http://localhost:4000/addindicadores',{
+    axios.post('http://localhost:4000/indicadores/addindicadores',{
       id: (this.state.CalificacionCORFO.charAt(0) + this.state.NumeroIndicador), //string.charAt(0)
       CalificacionCORFO : this.state.CalificacionCORFO,
       NumeroIndicador : this.state.NumeroIndicador,
@@ -98,7 +98,7 @@ class AddIndicador extends React.Component {
         })}/>
         <button onClick={
           () => this.onAddClick()
-        }>Añadir</button>
+        }>Enviar solicitud</button>
       </form>
     );
   }

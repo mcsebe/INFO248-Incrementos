@@ -9,7 +9,7 @@ export default function  TablaIndicadores() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:4000/indicadores');
+      const res = await axios.get('http://localhost:4000/indicadores/lista');
       setIndicadores(res.data);
     };
     fetchPosts();
@@ -38,8 +38,8 @@ export default function  TablaIndicadores() {
             <td>{indicador.Responsable}</td>
             <td>
               <button className="button muted-button">Edit</button>
-              <button className="button muted-button" onClick={() => 
-                axios.delete(`http://localhost:4000/deleteindicadores/${indicador.id}`,
+              <button className="button muted-button delete" onClick={() => 
+                axios.delete(`http://localhost:4000/indicadores/deleteindicadores/${indicador.id}`,
                 window.location.reload(true))
                 }>Delete</button>
             </td>
