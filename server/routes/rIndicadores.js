@@ -1,6 +1,5 @@
 const express = require('express');
 const enrutador = express.Router();
-const connection = require('../db');
 const servicios = require('../models/IndicadorModel')
 const sIndicadores = new servicios.indicadoresServicios();
 
