@@ -11,6 +11,10 @@ enrutador.post('/addindicadores', (req,res)=> {
   sIndicadores.createIndicador(res,req);
 })
 
+enrutador.put('/setmetricas', (req,res)=> {
+  sIndicadores.setMetricas(res,req);
+})
+
 enrutador.delete('/deleteindicadores/:id', (req,res)=> {
   sIndicadores.deleteIndicador(res,req.params.id)
 })

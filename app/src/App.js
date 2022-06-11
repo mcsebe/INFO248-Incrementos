@@ -1,22 +1,20 @@
 import React from 'react'
-import TablaIndicadores from "./components/TablaIndicadores";
-import AddIndicador from './components/AddIndicador';
+import Indicadores from './components/Indicadores';
+import Metricas from './components/Metricas';
+import TopBar from './components/topbar/Topbar';
+import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 
 function App() {
-    return (
-    <div className="container">
-      <div className="flex-row">
-        <div className="flex-large">
-          <h2>Añadir Indicador</h2>
-          <AddIndicador/>
-        </div>
-        <div className="flex-large">
-          <h2>Ver Indicadores</h2>
 
-          <TablaIndicadores />
-        </div>
-      </div>
-    </div>
+    return (
+
+      <Router>
+        <TopBar />
+        <Routes >
+          <Route path="/indicadores" element={<Indicadores/>}/>
+          <Route path="/metricas" element={<Metricas/>}/>
+        </Routes >
+    </Router>
   );
 }
 
