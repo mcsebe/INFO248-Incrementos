@@ -13,6 +13,30 @@ class metricasBuilder{
 
     }
 
+    // makeUnidad(Unidad){
+    //     this.Unidad = Unidad;
+    //     return this; 
+    // }
+
+    // makeFuenteInformacion(FuenteInformacion){
+    //     this.FuenteInformacion = FuenteInformacion; 
+    //     return this;
+    // }
+
+    // makeResponsable(Responsable){
+    //     this.Responsable = Responsable;
+    //     return this; 
+    // }
+
+    // makeFrecuencia(Frecuencia){
+
+    //     this.Frecuencia = Frecuencia;
+    //     return this; 
+    // }
+
+
+
+
     build(){
 
         let m = new metricas(this); 

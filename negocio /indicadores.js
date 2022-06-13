@@ -9,10 +9,16 @@ class indicadores{
         this.nombre = indicadores.nombre; 
         this.TipoIndicador = indicadores.TipoIndicador;
         this.eje =  indicadores.eje;
+
+        ///////////////////////////////////////
         this.Unidad = indicadores.Unidad;
         this.FuenteInformacion = indicadores.FuenteInformacion;
         this.Responsable = indicadores.Responsable;
         this.Frecuencia = indicadores.Frecuencia;
+
+
+        ///////////////////////////////////////
+
         this.Peticion = indicadores.Peticion; 
         this.idMetrica = indicadores.idMetrica;
         this.idMeta = indicadores.idMeta;       
@@ -48,6 +54,9 @@ class indicadores{
         return this.eje; 
     }
 
+
+
+    ////////////////////////////////////////
     getUnidad(){
         return this.Unidad;
     }
@@ -66,10 +75,13 @@ class indicadores{
 
         return this.Frecuencia; 
     }
-
+    ////////////////////////////////////
+    
     getPeticion(){
         return this.Peticion;
     }
+
+    
 
     getIdMetrica(){
         return this.idMetrica;

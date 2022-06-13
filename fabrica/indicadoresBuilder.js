@@ -28,6 +28,8 @@ class indicadorescBuilder{
         return this;
     }
 
+
+    ////////////////////////////////////////////
     makeUnidad(Unidad){
         this.Unidad = Unidad;
         return this; 
@@ -49,10 +51,18 @@ class indicadorescBuilder{
         return this; 
     }
 
+    ////////////////////////////////////////////
     makePeticion(Peticion){
         this.Peticion = Peticion;
         return this; 
     }
+
+    makeidMetrica(idMetrica){
+        this.idMetrica = idMetrica; 
+        return this; 
+
+    }
+    
 
     build(){
 

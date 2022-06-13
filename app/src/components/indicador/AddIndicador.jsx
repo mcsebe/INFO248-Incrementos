@@ -3,10 +3,6 @@ import axios from 'axios'
 
 const indicadoresBuilder = require("./fabrica/indicadoresBuilder");
 
-let indicador = new indicadoresBuilder(id).makeCalificacionCORFO(CalificacionCORFO).makeNumeroIndicador(NumeroIndicador).build();
-
-
-
 
 class AddIndicador extends React.Component {
   state = {
@@ -124,7 +120,11 @@ class AddIndicador extends React.Component {
   }
 }
 
+let indicador = new indicadoresBuilder(id).makeCalificacionCORFO(CalificacionCORFO).makeNumeroIndicador(NumeroIndicador).makeNombre(nombre).makeTipoIndicador(TipoIndicador).makeEje(eje).makeUnidad(makeUnidad).makeFuenteInformacion(FuenteInformacion).makeResponsable(Responsable).makeFrecuencia(Frecuencia).makeidMetrica(idMetrica).build();
 
 
+// se tiene de exportar el indicador 
 
+
+//export default indicador; 
 export default AddIndicador;
