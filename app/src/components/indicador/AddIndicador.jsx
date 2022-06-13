@@ -1,6 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 
+const indicadoresBuilder = require("./fabrica/indicadoresBuilder");
+
+let indicador = new indicadoresBuilder(id).makeCalificacionCORFO(CalificacionCORFO).makeNumeroIndicador(NumeroIndicador).build();
+
+
+
+
 class AddIndicador extends React.Component {
   state = {
     CalificacionCORFO : 'Mínimo',
@@ -116,5 +123,8 @@ class AddIndicador extends React.Component {
     );
   }
 }
+
+
+
 
 export default AddIndicador;
