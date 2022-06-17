@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-const indicadoresBuilder = require("./fabrica/indicadoresBuilder");
+//const indicadoresBuilder = require("./fabrica/indicadoresBuilder");
 
 
 class AddIndicador extends React.Component {
@@ -120,7 +120,7 @@ class AddIndicador extends React.Component {
   }
 }
 
-let indicador = new indicadoresBuilder(id).makeCalificacionCORFO(CalificacionCORFO).makeNumeroIndicador(NumeroIndicador).makeNombre(nombre).makeTipoIndicador(TipoIndicador).makeEje(eje).makeUnidad(makeUnidad).makeFuenteInformacion(FuenteInformacion).makeResponsable(Responsable).makeFrecuencia(Frecuencia).makeidMetrica(idMetrica).build();
+//let indicador = new indicadoresBuilder(id).makeCalificacionCORFO(CalificacionCORFO).makeNumeroIndicador(NumeroIndicador).makeNombre(nombre).makeTipoIndicador(TipoIndicador).makeEje(eje).makeUnidad(makeUnidad).makeFuenteInformacion(FuenteInformacion).makeResponsable(Responsable).makeFrecuencia(Frecuencia).makeidMetrica(idMetrica).build();
 
 
 // se tiene de exportar el indicador 
