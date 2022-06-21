@@ -1,36 +1,25 @@
 version: '3.9'
 
 services:
-  mariadb:
-    image: mariadb:10.7
-    ports:
-      - 3307:3306
-    volumes:
-      - ~/apps/mariadb:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=123456789
-      - MYSQL_PASSWORD=123456789
-      - MYSQL_USER=prueba01
-      - MYSQL_DATABASE=indicadores
-    
-
     app:
         build:
-          context: ./app
+          context: app/
 
-        container_name: app
+        container_name: appPrueba
 
-        networks: 
-          - network
-        #network_mode: "default"
+        
+        restart: 'always'
+        command: 'run -p 8000:3000 appPrueba'
+        network_mode: "default"
+        
 
     
     server:
         build:
           context: ./server
           
-        container_name: app
+        container_name:  serverPrueba
         
-        networks: 
-          - network
-        #network_mode: "default"
+        
+        restart: 'always'
+        network_mode: "default"
