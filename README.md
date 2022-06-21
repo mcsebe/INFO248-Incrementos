@@ -2,8 +2,9 @@
 
 ### ejecutar la app con  
 
-docker run -p 8000:3000 app   
+ bash run_architecture.sh
 
-### ejecutar en segundo plano 
 
-docker run -d -p 8000:03000 app    
+## Abrir en el navegador 
+
+ http://172.17.0.3:3000/indicadores
