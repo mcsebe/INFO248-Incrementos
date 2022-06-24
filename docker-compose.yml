@@ -34,7 +34,9 @@ services:
     
     server:
         build:
-          context: ./server
+          context: server/
+          args:
+            - DATABASE_IP=$DATABASE_IP 
           
         container_name:  serverPrueba
         

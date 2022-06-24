@@ -15,6 +15,6 @@ app.use('/indicadores', rIndicadores);
 
 app.use('/metricas', rMetricas);
 
-app.listen(4000, ()=> {
-    console.log('Running on port 4000')
+app.listen(8000, ()=> {
+    console.log('Running on port 8000')
 })
