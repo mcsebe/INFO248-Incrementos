@@ -36,7 +36,7 @@ class indicadores{
 
     getMisionUniversitaria(){
 
-        return this.getMisionUniversitaria;
+        return this.MisionUniversitaria;
     }
 
     getNombre(){
@@ -91,9 +91,8 @@ class indicadores{
         return this.idMeta;
     }
 
-
 }
 
 
-module.exports = indicadores; 
+module.exports = {indicadores}; 
  

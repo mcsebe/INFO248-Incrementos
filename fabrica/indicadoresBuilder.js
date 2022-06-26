@@ -1,6 +1,10 @@
-const indicadores = require("../negocio/indicadores");
+//const indicadores = require("../negocio/indicadores");
 
-class indicadorescBuilder{
+const {indicadores} = require("../negocio /indicadores");
+
+
+
+class indicadoresBuilder{
     constructor(id){
         this.id = id;
         return this;
@@ -13,6 +17,10 @@ class indicadorescBuilder{
     makeNumeroIndicador(NumeroIndicador){
         this.NumeroIndicador = NumeroIndicador; 
         return this; 
+    }
+    makeMisionUniversitaria(MisionUniversitaria){
+        this.MisionUniversitaria = MisionUniversitaria; 
+        return this;
     }
     makeNombre(nombre){
         this.nombre = nombre; 
@@ -62,12 +70,17 @@ class indicadorescBuilder{
         return this; 
 
     }
+    makeidMeta(idMeta){
+        this.idMeta = idMeta; 
+        return this; 
+
+    }
     
 
     build(){
 
         let i = new indicadores(this);
-        return this; 
+        return i; 
     }
 
 
@@ -75,4 +88,4 @@ class indicadorescBuilder{
 }
 
 
-module.exports = indicadorescBuilder; 
+module.exports = {indicadoresBuilder};
