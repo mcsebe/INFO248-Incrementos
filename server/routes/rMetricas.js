@@ -11,8 +11,16 @@ enrutador.post('/addmetricas', (req,res)=> {
     sMetricas.createMetricas(res,req);
 })
 
-enrutador.delete('/deletemetricas/:id', (req,res)=> {
+enrutador.put('/setaprobado/:id', (req,res)=> {
+    sMetricas.setAprobado(res,req.params.id);
+  })
+  
+  enrutador.put('/setpeticion/:id', (req,res)=> {
+    sMetricas.setPeticion(res,req.params.id);
+  })
+  
+  enrutador.delete('/deletemetricas/:id', (req,res)=> {
     sMetricas.deleteMetricas(res,req.params.id)
-})
+  })
 
 module.exports = enrutador;

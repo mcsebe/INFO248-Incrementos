@@ -13,7 +13,8 @@ class AddIndicador extends React.Component {
     FuenteInformacion : '',
     Responsable: '',
     Frecuencia: '',
-    idMetrica: 0
+    idMetrica: 0,
+    idMeta: 0
   }
 
   onAddClick = () => {
@@ -29,7 +30,8 @@ class AddIndicador extends React.Component {
       FuenteInformacion : this.state.FuenteInformacion,
       Responsable : this.state.Responsable,
       Frecuencia : this.state.Frecuencia,
-      idMetrica : this.state.idMetrica
+      idMetrica : this.state.idMetrica,
+      idMeta : this.state.idMeta
     })
   }
 
@@ -105,8 +107,25 @@ class AddIndicador extends React.Component {
           idMetrica: e.target.value
         })}>
           <option value={0}>-</option>
-          {this.props.metricas.map((x, i) => 
-          <option value={x.id}>{x.nombre}</option>)}
+          {this.props.metricas.map((x, i) =>
+          x.Aprobado === 1 ?
+          <option value={x.id}>{x.nombre}</option>
+          :
+          <div/>
+          )}
+        </select>
+
+        <label>Meta</label>
+        <select value={this.state.idMeta} onChange={e => this.setState({
+          idMeta: e.target.value
+        })}>
+          <option value={0}>-</option>
+          {this.props.metas.map((x, i) => 
+          x.Aprobado === 1 ?
+          <option value={x.id}>{x.nombre}</option>
+          :
+          <div/>
+          )}
         </select>
 
         <button onClick={

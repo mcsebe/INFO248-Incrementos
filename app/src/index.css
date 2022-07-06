@@ -558,7 +558,7 @@ dd {
 }
 
 .container, .small-container, .medium-container {
-  max-width: 1200px;
+  max-width: 1400px;
   padding: 0 1rem;
   margin-left: auto;
   margin-right: auto;
@@ -841,7 +841,9 @@ a.muted-button {
 }
 
 .delete {
-  background: #F98080;
+  color: white;
+  background: red;
+  border-color: red;
 }
 
 .muted-button:hover, .muted-button:focus, .muted-button:active,
@@ -1022,6 +1024,12 @@ caption {
   .contain-table {
     width: 100%;
   }
+}
+
+.checkbox{
+  width: 18px;
+  height: 18px;
+  padding-left: 10px;
 }
 
 /*

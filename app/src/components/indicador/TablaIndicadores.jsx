@@ -25,11 +25,12 @@ export default function  TablaIndicadores() {
         <th>Tipo de indicador</th>
         <th>Eje</th>
         <th>Responsable</th>
-        <th>Opciones</th>
+        <th>Opción</th>
       </tr>
     </thead>
     <tbody>
       {indicadores.map((indicador) => (
+        indicador.Aprobado === 1 ?
           <tr key={indicador.id}>
             <td>{indicador.id}</td>
             <td>{indicador.nombre}</td>
@@ -39,11 +40,42 @@ export default function  TablaIndicadores() {
             <td>
               {/* <button className="button muted-button">Edit</button> */}
               <button className="button muted-button delete" onClick={() => 
-                axios.delete(`http://localhost:4000/indicadores/deleteindicadores/${indicador.id}`,
+                axios.put(`http://localhost:4000/indicadores/setpeticion/${indicador.id}`,
                 window.location.reload(true))
-                }>Delete</button>
+                }>Eliminar</button>
             </td>
           </tr>
+        :
+        indicador.Peticion === 'Añadir'?
+        <tr key={indicador.id} style={{backgroundColor: "#a4fbc1"}}>
+          <td>{indicador.id}</td>
+          <td>{indicador.nombre}</td>
+          <td>{indicador.TipoIndicador}</td>
+          <td>{indicador.eje}</td>
+          <td>{indicador.Responsable}</td>
+          <td>
+            {/* <button className="button muted-button">Edit</button> */}
+            <button className="button muted-button delete" onClick={() => 
+              axios.put(`http://localhost:4000/indicadores/setpeticion/${indicador.id}`,
+              window.location.reload(true))
+              }>Eliminar</button>
+          </td>
+        </tr>
+        :
+        <tr key={indicador.id} style={{backgroundColor: "#fba4a7"}}>
+          <td>{indicador.id}</td>
+          <td>{indicador.nombre}</td>
+          <td>{indicador.TipoIndicador}</td>
+          <td>{indicador.eje}</td>
+          <td>{indicador.Responsable}</td>
+          <td>
+            {/* <button className="button muted-button">Edit</button> */}
+            <button className="button muted-button delete" onClick={() => 
+              axios.put(`http://localhost:4000/indicadores/setpeticion/${indicador.id}`,
+              window.location.reload(true))
+              }>Eliminar</button>
+          </td>
+        </tr>
         ))
       }
     </tbody>

@@ -36,10 +36,11 @@ class AddMetrica extends React.Component {
   
       <label>Selecciona los indicadores correspondientes</label>
         {this.props.indicadores.map((x, i) => 
-        x.idMetrica === 0 ? 
+        x.idMetrica === 0 && x.Aprobado === 1 ? 
   
         <label key={i}>
           <input
+          className='checkbox'
             type="checkbox"
             name="lang"
             value={x.id}

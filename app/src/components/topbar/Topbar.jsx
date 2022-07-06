@@ -21,6 +21,16 @@ export default function TopBar() {
               Metricas
             </Link>
           </li>
+          <li className="topListItem">
+            <Link className="link" to="/metas">
+              Metas
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/Peticiones">
+              Peticiones
+            </Link>
+          </li>
         </ul>
       </div>
       {/* <div className="topRight">
