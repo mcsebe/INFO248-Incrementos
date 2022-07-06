@@ -41,28 +41,16 @@ export default function  TablaMetrica(props) {
           </tr>
         :
         metrica.Peticion === 'Añadir'?
-        <tr key={metrica.id} style={{backgroundColor: "#a4fbc1"}}>
+        <tr key={metrica.id} style={{backgroundColor: "#c6fbd8ad"}}>
           <td>{metrica.id}</td>
           <td>{metrica.nombre}</td>
-          <td>
-            {/* <button className="button muted-button">Edit</button> */}
-            <button className="button muted-button delete" onClick={() => 
-              axios.put(`http://localhost:4000/metricas/setpeticion/${metrica.id}`,
-              window.location.reload(true))
-              }>Eliminar</button>
-          </td>
+          <td style={{color: "green"}}>Peticion Añadir</td>
         </tr>
         :
-        <tr key={metrica.id} style={{backgroundColor: "#fba4a7"}}>
+        <tr key={metrica.id} style={{backgroundColor: "#feb6b8a8"}}>
           <td>{metrica.id}</td>
           <td>{metrica.nombre}</td>
-          <td>
-            {/* <button className="button muted-button">Edit</button> */}
-            <button className="button muted-button delete" onClick={() => 
-              axios.put(`http://localhost:4000/metricas/setpeticion/${metrica.id}`,
-              window.location.reload(true))
-              }>Eliminar</button>
-          </td>
+          <td style={{color: "red"}}>Peticion Eliminar</td>
         </tr>
         ))
       }

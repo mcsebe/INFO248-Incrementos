@@ -16,19 +16,28 @@ export default function TopBar() {
               Indicadores
             </Link>
           </li>
+          
           <li className="topListItem">
             <Link className="link" to="/metricas">
               Metricas
             </Link>
           </li>
+
           <li className="topListItem">
             <Link className="link" to="/metas">
               Metas
             </Link>
           </li>
+
           <li className="topListItem">
-            <Link className="link" to="/Peticiones">
+            <Link className="link" to="/peticiones">
               Peticiones
+            </Link>
+          </li>
+
+          <li className="topListItem">
+            <Link className="link" to="/datos">
+              Datos
             </Link>
           </li>
         </ul>

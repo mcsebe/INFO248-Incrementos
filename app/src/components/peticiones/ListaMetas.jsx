@@ -98,9 +98,9 @@ class ListaMetas extends React.Component {
 
 
                 {meta.Peticion === 'Añadir'?
-                    <th style={AStyle}>{meta.Peticion}</th>
+                    <td style={AStyle}>{meta.Peticion}</td>
                     :
-                    <th style={DStyle}>{meta.Peticion}</th>}
+                    <td style={DStyle}>{meta.Peticion}</td>}
             </tr>
             :
             <div/>

@@ -89,20 +89,20 @@ class ListaIndicadores extends React.Component {
                 </td>
                 }
                 <td>{indicador.id}</td>
-                <th>{indicador.CalificacionCORFO}</th>
-                <th>{indicador.NumeroIndicador}</th>
-                <th>{indicador.MisionUniversitaria}</th>
+                <td>{indicador.CalificacionCORFO}</td>
+                <td>{indicador.NumeroIndicador}</td>
+                <td>{indicador.MisionUniversitaria}</td>
                 <td>{indicador.nombre}</td>
                 <td>{indicador.TipoIndicador}</td>
                 <td>{indicador.eje}</td>
-                <th>{indicador.Unidad}</th>
-                <th>{indicador.FuenteInformacion}</th>
+                <td>{indicador.Unidad}</td>
+                <td>{indicador.FuenteInformacion}</td>
                 <td>{indicador.Responsable}</td>
-                <th>{indicador.Frecuencia}</th>
+                <td>{indicador.Frecuencia}</td>
                 {indicador.Peticion === 'Añadir'?
-                    <th style={AStyle}>{indicador.Peticion}</th>
+                    <td style={AStyle}>{indicador.Peticion}</td>
                     :
-                    <th style={DStyle}>{indicador.Peticion}</th>}
+                    <td style={DStyle}>{indicador.Peticion}</td>}
             </tr>
             :
             <div/>

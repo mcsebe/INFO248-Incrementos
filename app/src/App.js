@@ -3,6 +3,7 @@ import Indicadores from './components/Indicadores';
 import Metricas from './components/Metricas';
 import Metas from './components/Metas';
 import Peticiones from './components/Peticiones';
+import Datos from './components/Datos';
 import TopBar from './components/topbar/Topbar';
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/metricas" element={<Metricas/>}/>
           <Route path="/metas" element={<Metas/>}/>
           <Route path="/peticiones" element={<Peticiones/>}/>
+          <Route path="/datos" element={<Datos/>}/>
         </Routes >
     </Router>
   );

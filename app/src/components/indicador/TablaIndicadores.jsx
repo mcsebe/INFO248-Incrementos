@@ -47,34 +47,22 @@ export default function  TablaIndicadores() {
           </tr>
         :
         indicador.Peticion === 'Añadir'?
-        <tr key={indicador.id} style={{backgroundColor: "#a4fbc1"}}>
+        <tr key={indicador.id} style={{backgroundColor: "#c6fbd8ad"}}>
           <td>{indicador.id}</td>
           <td>{indicador.nombre}</td>
           <td>{indicador.TipoIndicador}</td>
           <td>{indicador.eje}</td>
           <td>{indicador.Responsable}</td>
-          <td>
-            {/* <button className="button muted-button">Edit</button> */}
-            <button className="button muted-button delete" onClick={() => 
-              axios.put(`http://localhost:4000/indicadores/setpeticion/${indicador.id}`,
-              window.location.reload(true))
-              }>Eliminar</button>
-          </td>
+          <td style={{color: "green"}}>Peticion Añadir</td>
         </tr>
         :
-        <tr key={indicador.id} style={{backgroundColor: "#fba4a7"}}>
+        <tr key={indicador.id} style={{backgroundColor: "#feb6b8a8"}}> 
           <td>{indicador.id}</td>
           <td>{indicador.nombre}</td>
           <td>{indicador.TipoIndicador}</td>
           <td>{indicador.eje}</td>
           <td>{indicador.Responsable}</td>
-          <td>
-            {/* <button className="button muted-button">Edit</button> */}
-            <button className="button muted-button delete" onClick={() => 
-              axios.put(`http://localhost:4000/indicadores/setpeticion/${indicador.id}`,
-              window.location.reload(true))
-              }>Eliminar</button>
-          </td>
+          <td style={{color: "red"}}>Peticion Eliminar</td>
         </tr>
         ))
       }

@@ -98,9 +98,9 @@ class ListaMetricas extends React.Component {
 
 
                 {metrica.Peticion === 'Añadir'?
-                    <th style={AStyle}>{metrica.Peticion}</th>
+                    <td style={AStyle}>{metrica.Peticion}</td>
                     :
-                    <th style={DStyle}>{metrica.Peticion}</th>}
+                    <td style={DStyle}>{metrica.Peticion}</td>}
             </tr>
             :
             <div/>
