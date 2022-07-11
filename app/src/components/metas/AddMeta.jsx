@@ -10,11 +10,11 @@ class AddMeta extends React.Component {
   }
 
   onAddClick = () => {
-    axios.post('http://localhost:4000/metas/addmetas',{
+    axios.post('http://146.83.216.224:8000/metas/addmetas',{
        id : this.state.id,
        nombre : this.state.nombre
     })
-    axios.put('http://localhost:4000/indicadores/setmetas',{
+    axios.put('http://146.83.216.224:8000/indicadores/setmetas',{
       id : this.state.id,
       idIndicadores: this.state.idIndicadores
     })

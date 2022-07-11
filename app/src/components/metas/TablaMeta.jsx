@@ -10,7 +10,7 @@ export default function  TablaMeta(props) {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:4000/metas/lista');
+      const res = await axios.get('http://146.83.216.224:8000/metas/lista');
       setMetas(res.data);
     };
     fetchPosts();
@@ -33,7 +33,7 @@ export default function  TablaMeta(props) {
           <td>
             {/* <button className="button muted-button">Edit</button> */}
             <button className="button muted-button delete" onClick={() => 
-              axios.put(`http://localhost:4000/metas/setpeticion/${meta.id}`,
+              axios.put(`http://146.83.216.224:8000/metas/setpeticion/${meta.id}`,
               window.location.reload(true))
               }>Eliminar</button>
           </td>

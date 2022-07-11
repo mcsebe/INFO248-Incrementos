@@ -10,19 +10,19 @@ class ListaMetas extends React.Component {
 
   onAprobarClick = () => {
     for(let i=0; i < this.state.idMetasA.length ; i++){ 
-        axios.put(`http://localhost:4000/metas/setaprobado/${this.state.idMetasA[i]}`)
+        axios.put(`http://146.83.216.224:8000/metas/setaprobado/${this.state.idMetasA[i]}`)
     }
     for(let i=0; i < this.state.idMetasD.length ; i++){ 
-        axios.delete(`http://localhost:4000/metas/deletemetas/${this.state.idMetasD[i]}`)
+        axios.delete(`http://146.83.216.224:8000/metas/deletemetas/${this.state.idMetasD[i]}`)
     }
   }
 
   onRechazarClick = () => {
     for(let i=0; i < this.state.idMetasA.length ; i++){ 
-        axios.delete(`http://localhost:4000/metas/deletemetas/${this.state.idMetasA[i]}`)
+        axios.delete(`http://146.83.216.224:8000/metas/deletemetas/${this.state.idMetasA[i]}`)
     }
     for(let i=0; i < this.state.idMetasD.length ; i++){ 
-        axios.put(`http://localhost:4000/metas/setaprobado/${this.state.idMetasD[i]}`)
+        axios.put(`http://146.83.216.224:8000/metas/setaprobado/${this.state.idMetasD[i]}`)
     }
   }
 

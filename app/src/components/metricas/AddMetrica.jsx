@@ -10,11 +10,11 @@ class AddMetrica extends React.Component {
   }
 
   onAddClick = () => {
-    axios.post('http://localhost:4000/metricas/addmetricas',{
+    axios.post('http://146.83.216.224:8000/metricas/addmetricas',{
        id : this.state.id,
        nombre : this.state.nombre
     })
-    axios.put('http://localhost:4000/indicadores/setmetricas',{
+    axios.put('http://146.83.216.224:8000/indicadores/setmetricas',{
       id : this.state.id,
       idIndicadores: this.state.idIndicadores
     })
