@@ -10,19 +10,19 @@ class ListaMetricas extends React.Component {
 
   onAprobarClick = () => {
     for(let i=0; i < this.state.idMetricasA.length ; i++){ 
-        axios.put(`http://146.83.216.224:5001/metricas/setaprobado/${this.state.idMetricasA[i]}`)
+        axios.put(`http://146.83.216.224:5002/metricas/setaprobado/${this.state.idMetricasA[i]}`)
     }
     for(let i=0; i < this.state.idMetricasD.length ; i++){ 
-        axios.delete(`http://146.83.216.224:5001/metricas/deletemetricas/${this.state.idMetricasD[i]}`)
+        axios.delete(`http://146.83.216.224:5002/metricas/deletemetricas/${this.state.idMetricasD[i]}`)
     }
   }
 
   onRechazarClick = () => {
     for(let i=0; i < this.state.idMetricasA.length ; i++){ 
-        axios.delete(`http://146.83.216.224:5001/metricas/deletemetricas/${this.state.idMetricasA[i]}`)
+        axios.delete(`http://146.83.216.224:5002/metricas/deletemetricas/${this.state.idMetricasA[i]}`)
     }
     for(let i=0; i < this.state.idMetricasD.length ; i++){ 
-        axios.put(`http://146.83.216.224:5001/metricas/setaprobado/${this.state.idMetricasD[i]}`)
+        axios.put(`http://146.83.216.224:5002/metricas/setaprobado/${this.state.idMetricasD[i]}`)
     }
   }
 
