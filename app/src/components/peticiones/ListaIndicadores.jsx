@@ -10,19 +10,19 @@ class ListaIndicadores extends React.Component {
 
   onAprobarClick = () => {
     for(let i=0; i < this.state.idIndicadoresA.length ; i++){ 
-        axios.put(`http://146.83.216.224:5000/indicadores/setaprobado/${this.state.idIndicadoresA[i]}`)
+        axios.put(`http://146.83.216.224:5001/indicadores/setaprobado/${this.state.idIndicadoresA[i]}`)
     }
     for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
-        axios.delete(`http://146.83.216.224:5000/indicadores/deleteindicadores/${this.state.idIndicadoresD[i]}`)
+        axios.delete(`http://146.83.216.224:5001/indicadores/deleteindicadores/${this.state.idIndicadoresD[i]}`)
     }
   }
 
   onRechazarClick = () => {
     for(let i=0; i < this.state.idIndicadoresA.length ; i++){ 
-        axios.delete(`http://146.83.216.224:5000/indicadores/deleteindicadores/${this.state.idIndicadoresA[i]}`)
+        axios.delete(`http://146.83.216.224:5001/indicadores/deleteindicadores/${this.state.idIndicadoresA[i]}`)
     }
     for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
-        axios.put(`http://146.83.216.224:5000/indicadores/setaprobado/${this.state.idIndicadoresD[i]}`)
+        axios.put(`http://146.83.216.224:5001/indicadores/setaprobado/${this.state.idIndicadoresD[i]}`)
     }
   }
 

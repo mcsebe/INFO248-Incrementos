@@ -11,7 +11,7 @@ export default function Metas() {
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await axios.get('http://146.83.216.224:5000/indicadores/lista');
+        const res = await axios.get('http://146.83.216.224:5001/indicadores/lista');
         setIndicadores(res.data);
       };
       fetchPosts();

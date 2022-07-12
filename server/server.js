@@ -18,6 +18,6 @@ app.use('/metricas', rMetricas);
 
 app.use('/metas', rMetas);
 
-app.listen(4000, ()=> {
-    console.log('Running on port 4000')
+app.listen(5001, ()=> {
+    console.log('Running on port 5001')
 })
