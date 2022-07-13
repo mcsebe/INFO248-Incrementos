@@ -9,7 +9,7 @@ export default function  TablaIndicadores() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://146.83.216.224:5002/indicadores/lista');
+      const res = await axios.get('http://opentera.inf.uach.cl:82/indicadores/lista');
       setIndicadores(res.data);
     };
     fetchPosts();
@@ -40,7 +40,7 @@ export default function  TablaIndicadores() {
             <td>
               {/* <button className="button muted-button">Edit</button> */}
               <button className="button muted-button delete" onClick={() => 
-                axios.put(`http://146.83.216.224:5002/indicadores/setpeticion/${indicador.id}`,
+                axios.put(`http://opentera.inf.uach.cl:82/indicadores/setpeticion/${indicador.id}`,
                 window.location.reload(true))
                 }>Eliminar</button>
             </td>

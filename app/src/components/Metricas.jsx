@@ -11,7 +11,7 @@ export default function Metricas() {
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await axios.get('http://146.83.216.224:5002/indicadores/lista');
+        const res = await axios.get('http://opentera.inf.uach.cl:82/indicadores/lista');
         setIndicadores(res.data);
       };
       fetchPosts();

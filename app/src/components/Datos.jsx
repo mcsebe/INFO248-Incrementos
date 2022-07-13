@@ -10,7 +10,7 @@ export default function Datos() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://146.83.216.224:5002/indicadores/lista');
+      const res = await axios.get('http://opentera.inf.uach.cl:82/indicadores/lista');
       setIndicadores(res.data);
     };
     fetchPosts();
@@ -18,7 +18,7 @@ export default function Datos() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://146.83.216.224:5002/metricas/lista');
+      const res = await axios.get('http://opentera.inf.uach.cl:82/metricas/lista');
       setMetricas(res.data);
     };
     fetchPosts();
@@ -26,7 +26,7 @@ export default function Datos() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://146.83.216.224:5002/metas/lista');
+      const res = await axios.get('http://opentera.inf.uach.cl:82/metas/lista');
       setMetas(res.data);
     };
     fetchPosts();

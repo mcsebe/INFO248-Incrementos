@@ -10,11 +10,11 @@ class AddMeta extends React.Component {
   }
 
   onAddClick = () => {
-    axios.post('http://146.83.216.224:5002/metas/addmetas',{
+    axios.post('http://opentera.inf.uach.cl:82/metas/addmetas',{
        id : this.state.id,
        nombre : this.state.nombre
     })
-    axios.put('http://146.83.216.224:5002/indicadores/setmetas',{
+    axios.put('http://opentera.inf.uach.cl:82/indicadores/setmetas',{
       id : this.state.id,
       idIndicadores: this.state.idIndicadores
     })
