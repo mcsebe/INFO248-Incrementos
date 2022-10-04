@@ -19,7 +19,7 @@ enrutador.put('/setaprobado/:id', (req,res)=> {
     sMetas.setPeticion(res,req.params.id);
   })
   
-  enrutador.delete('/deletemetas/:id', (req,res)=> {
+  enrutador.put('/deletemetas/:id', (req,res)=> {
     sMetas.deleteMetas(res,req.params.id)
   })
 

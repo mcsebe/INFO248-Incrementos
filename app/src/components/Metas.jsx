@@ -7,6 +7,7 @@ import axios from "axios";
 export default function Metas() {
 
     const [indicadores, setIndicadores] = useState([]);
+    const [metas, setMetas] = useState([]);
 
 
     useEffect(() => {
@@ -17,12 +18,20 @@ export default function Metas() {
       fetchPosts();
     }, );
 
+    useEffect(() => {
+      const fetchPosts = async () => {
+        const res = await axios.get('http://localhost:4000/metas/lista');
+        setMetas(res.data);
+      };
+      fetchPosts();
+    }, );
+
   return (
     <div className="container">
       <div className="flex-row">
         <div className="flex-large">
           <h2>Añadir Meta</h2>
-          <AddMeta indicadores={indicadores}/>
+          <AddMeta indicadores={indicadores} metas={metas}/>
         </div>
         <div className="flex-large">
           <h2>Ver Meta</h2>

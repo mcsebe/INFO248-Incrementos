@@ -4,11 +4,7 @@ import { Link } from "react-router-dom";
 export default function TopBar() {
   return (
     <div className="top">
-        {/* <div className="topLeft">
-            <a href="https://www.uach.cl/" target="_blank" className="topLogoLink">
-                Hola
-            </a>
-        </div> */}
+
       <div className="topCenter">
         <ul className="topList">
           <li className="topListItem">
@@ -28,20 +24,22 @@ export default function TopBar() {
               Metas
             </Link>
           </li>
-
+          </ul>
+      </div>
+      
+        <div className="topRight">
           <li className="topListItem">
             <Link className="link" to="/peticiones">
-              Peticiones
+              Solicitudes
             </Link>
           </li>
 
           <li className="topListItem">
             <Link className="link" to="/datos">
-              Datos
+              Indicadores
             </Link>
           </li>
-        </ul>
-      </div>
+          </div>
       {/* <div className="topRight">
           <Link to="/settings">
             "Hola"

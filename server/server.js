@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const rIndicadores = require('./routes/rIndicadores');
 const rMetricas = require('./routes/rMetricas');
 const rMetas = require('./routes/rMetas');
+const rHistorial = require('./routes/rHistorial')
 
 const app = express()
 
@@ -17,6 +18,8 @@ app.use('/indicadores', rIndicadores);
 app.use('/metricas', rMetricas);
 
 app.use('/metas', rMetas);
+
+app.use('/historial', rHistorial)
 
 app.listen(4000, ()=> {
     console.log('Running on port 4000')

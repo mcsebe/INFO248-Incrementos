@@ -1,38 +1,96 @@
 import React from 'react'
 import axios from 'axios'
+import dateFormat, {masks} from "dateformat";
+import swal from 'sweetalert'
 
 class ListaMetas extends React.Component {    
 
   state = {
     idMetasA: [],
-    idMetasD: []
+    idMetasD: [],
   }
 
   onAprobarClick = () => {
-    for(let i=0; i < this.state.idMetasA.length ; i++){ 
-        axios.put(`http://localhost:4000/metas/setaprobado/${this.state.idMetasA[i]}`)
-    }
-    for(let i=0; i < this.state.idMetasD.length ; i++){ 
-        axios.delete(`http://localhost:4000/metas/deletemetas/${this.state.idMetasD[i]}`)
-    }
+    swal({
+        title:"Aprobar",
+        text: "¿Estás seguro que deseas aprobar estas solicitudes?",
+        icon: "warning",
+        buttons: ["No", "Si"]
+    }).then(respuesta => {
+        if (respuesta){
+            let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+            for(let i=0; i < this.state.idMetasA.length ; i++){ 
+                axios.put(`http://localhost:4000/metas/setaprobado/${this.state.idMetasA[i]}_Añadir_${today}`)
+            }
+            for(let i=0; i < this.state.idMetasD.length ; i++){ 
+                axios.put(`http://localhost:4000/metas/deletemetas/${this.state.idMetasD[i]}_Eliminar_${today}`)
+            }
+            this.setState( {
+                idMetasA: [],
+                idMetasD: [],
+                fechasMetasA: [],
+                fechasMetasD: [],
+              })
+            swal({
+                text: "Las solicitudes se aceptaron correctamente",
+                icon: "success",
+                timer: "2000"
+            })
+        }
+    })
   }
 
   onRechazarClick = () => {
-    for(let i=0; i < this.state.idMetasA.length ; i++){ 
-        axios.delete(`http://localhost:4000/metas/deletemetas/${this.state.idMetasA[i]}`)
-    }
-    for(let i=0; i < this.state.idMetasD.length ; i++){ 
-        axios.put(`http://localhost:4000/metas/setaprobado/${this.state.idMetasD[i]}`)
-    }
+    swal({
+        title:"Rechazar",
+        text: "¿Estás seguro que deseas rechazar estas solicitudes?",
+        icon: "warning",
+        buttons: ["No", "Si"]
+    }).then(respuesta => {
+        if (respuesta){
+            let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+            for(let i=0; i < this.state.idMetasA.length ; i++){ 
+                axios.put(`http://localhost:4000/metas/deletemetas/${this.state.idMetasA[i]}_Añadir_${today}`)
+            }
+            for(let i=0; i < this.state.idMetasD.length ; i++){ 
+                axios.put(`http://localhost:4000/metas/setaprobado/${this.state.idMetasD[i]}_Eliminar_${today}`)
+            }
+            this.setState( {
+                idMetasA: [],
+                idMetasD: []
+              })
+            swal({
+                text: "Las solicitudes se rechazaron correctamente",
+                icon: "success",
+                timer: "2000"
+            })
+        }
+    })
+  }
+
+  AClick = (e) => {
+    this.state.idMetasA.includes(e.target.value) ? 
+                        this.state.idMetasA = this.state.idMetasA.filter((item) => item !== e.target.value) 
+                        : 
+                        this.state.idMetasA.push(e.target.value);
+
+  }
+
+  DClick = (e) => {
+    this.state.idMetasD.includes(e.target.value) ? 
+                        this.state.idMetasD = this.state.idMetasD.filter((item) => item !== e.target.value)
+                        : 
+                        this.state.idMetasD.push(e.target.value);
+
   }
 
   render(){
     const AStyle = {
-        color: 'green'
+        color: 'rgb(48, 147, 59)'
     };
 
     const DStyle = {
-        color: 'red'
+        color: 'rgb(170, 25, 25)'
     };
 
     return(
@@ -42,10 +100,11 @@ class ListaMetas extends React.Component {
         <thead>
         <tr>
             <th></th>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Indicadores</th>
-            <th>Petición</th>
+            <th>ID del Indicador</th>
+            <th>Nombre del Indicador</th>
+            <th>Año</th>
+            <th>Meta propuesta</th>
+            <th>Tipo de solicitud</th>
         </tr>
         </thead>
         <tbody>
@@ -60,11 +119,9 @@ class ListaMetas extends React.Component {
                     type="checkbox"
                     name="lang"
                     value={meta.id}
-                    onChange={e => this.state.idMetasA.includes(e.target.value) ? this.state.idMetasA = this.state.idMetasA.filter((item) => 
-                        item !== e.target.value) 
-                        : 
-                        this.state.idMetasA.push(e.target.value)
-                    }/>
+                    onChange={
+                        e => this.AClick(e)
+                        }/>
                 </td>
                 :
                 <td>
@@ -73,28 +130,25 @@ class ListaMetas extends React.Component {
                     type="checkbox"
                     name="lang"
                     value={meta.id}
-                    onChange={e => this.state.idMetasD.includes(e.target.value) ? this.state.idMetasD = this.state.idMetasD.filter((item) => 
-                        item !== e.target.value) 
-                        : 
-                        this.state.idMetasD.push(e.target.value)
-                    }/>
+                    onChange={
+                        e => this.DClick(e)
+                        }/>
                 </td>
                 }
-                <td>{meta.id}</td>
-                <td>{meta.nombre}</td>
+                <td>{meta.idindicador}</td>
 
-
-                        <td>
-                            {this.props.indicadores.map((indicador) => (
-                                indicador.idMeta === meta.id ?
-                                    <div>
-                                    {indicador.id} ㅤㅤㅤㅤ  {indicador.nombre}
-                                    <br/>
-                                    </div>
-                                    :
-                                    <div/>
-                            ))}
-                        </td>
+                <td>
+                    {this.props.indicadores.map((indicador) => (
+                        indicador.id === meta.idindicador ?
+                            <div>
+                            {indicador.nombre}
+                            </div>
+                            :
+                            <></>
+                    ))}
+                </td>
+                <td>{meta.fecha}</td>
+                <td>{meta.cantidad}</td>
 
 
                 {meta.Peticion === 'Añadir'?

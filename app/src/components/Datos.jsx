@@ -51,6 +51,7 @@ export default function Datos() {
                 <th>Responsable</th>
                 <th>Frecuencia de medicion</th>
                 <th>Métrica</th>
+                <th>Año</th>
                 <th>Meta</th>
             </tr>
             </thead>
@@ -81,13 +82,28 @@ export default function Datos() {
                 </td>
 
                 <td>
-                {metas.map((meta) => (
-                    indicador.idMeta === meta.id && meta.Aprobado === 1 ?
-                    <div>{meta.nombre}</div>
-                    :
-                    <div/>
-                    ))
-                }
+                  {metas.map((meta) => (
+                      indicador.id === meta.idindicador && meta.Aprobado === 1 ?
+                      <div>
+                        {meta.fecha}
+                      <br/>
+                      </div>
+                      :
+                      <></>
+                      ))
+                  }
+                </td>
+                <td>
+                  {metas.map((meta) => (
+                      indicador.id === meta.idindicador && meta.Aprobado === 1 ?
+                      <div>
+                      <b>{meta.cantidad}</b>
+                      <br/>
+                      </div>
+                      :
+                      <></>
+                      ))
+                  }
                 </td>
 
             </tr>

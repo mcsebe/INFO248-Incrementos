@@ -1,16 +1,17 @@
 import React from 'react'
-import ListaIndicadores from './peticiones/ListaIndicadores';
-import ListaMetricas from './peticiones/ListaMetricas';
+import HistorialIndicadores from './historial peticiones/HistorialIndicadores';
+import HistorialMetricas from './historial peticiones/HistorialMetricas';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ListaMetas from './peticiones/ListaMetas';
+import HistorialMetas from './historial peticiones/HistorialMetas';
 import { Link } from "react-router-dom";
 
-export default function Peticiones() {
+export default function HistorialPeticiones() {
 
     const [indicadores, setIndicadores] = useState([]);
     const [metricas, setMetricas] = useState([]);
     const [metas, setMetas] = useState([]);
+    const [historial, setHistorial] = useState([]);
 
 
     useEffect(() => {
@@ -37,25 +38,27 @@ export default function Peticiones() {
         fetchPosts();
       }, );
 
+      useEffect(() => {
+        const fetchPosts = async () => {
+          const res = await axios.get('http://localhost:4000/historial/lista');
+          setHistorial(res.data);
+        };
+        fetchPosts();
+      }, );
+
   return (
     <div className="container">
-      <h1>Solicitudes</h1>
+      <h1>Historial de solicitudes</h1>
       <div className="flex-row">
         <div className="flex-large">
           <h2>Indicadores</h2>
-          <ListaIndicadores indicadores={indicadores}/>
+          <HistorialIndicadores indicadores={indicadores} historial={historial}/>
         
           <h2>Métricas</h2>
-          <ListaMetricas metricas={metricas} indicadores={indicadores}/>
+          <HistorialMetricas metricas={metricas} indicadores={indicadores} historial={historial}/>
 
           <h2>Metas</h2>
-          <ListaMetas metas={metas} indicadores={indicadores}/>
-
-          <Link to="/historial-peticiones" className="flex-row historial" style={{color: "green"}}>
-            <button className="historial-button">
-            Historial
-            </button>
-          </Link>
+          <HistorialMetas metas={metas} indicadores={indicadores} historial={historial}/>
 
         </div>
 

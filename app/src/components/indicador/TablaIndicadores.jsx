@@ -6,7 +6,6 @@ import axios from "axios";
 export default function  TablaIndicadores() {
   const [indicadores, setIndicadores] = useState([]);
 
-
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get('http://localhost:4000/indicadores/lista');
@@ -30,9 +29,27 @@ export default function  TablaIndicadores() {
     </thead>
     <tbody>
       {indicadores.map((indicador) => (
+        indicador.Aprobado === 2 ?
+        <tr key={indicador.id} style={{backgroundColor: "#EEEDED", color: "#A7A4A4"}}>
+          {indicador.antiguaid === '0'?
+            <td>{indicador.id}</td>
+            :
+            <td>{indicador.antiguaid}</td>
+          }
+          <td>{indicador.nombre}</td>
+          <td>{indicador.TipoIndicador}</td>
+          <td>{indicador.eje}</td>
+          <td>{indicador.Responsable}</td>
+          <td>Eliminado</td>
+        </tr>
+      :
         indicador.Aprobado === 1 ?
           <tr key={indicador.id}>
+          {indicador.antiguaid === '0'?
             <td>{indicador.id}</td>
+            :
+            <td>{indicador.antiguaid}</td>
+          }
             <td>{indicador.nombre}</td>
             <td>{indicador.TipoIndicador}</td>
             <td>{indicador.eje}</td>
@@ -41,7 +58,8 @@ export default function  TablaIndicadores() {
               {/* <button className="button muted-button">Edit</button> */}
               <button className="button muted-button delete" onClick={() => 
                 axios.put(`http://localhost:4000/indicadores/setpeticion/${indicador.id}`,
-                window.location.reload(true))
+                window.location.reload(true)
+                )
                 }>Eliminar</button>
             </td>
           </tr>

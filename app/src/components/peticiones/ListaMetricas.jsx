@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import dateFormat, {masks} from "dateformat";
+import swal from 'sweetalert'
 
 class ListaMetricas extends React.Component {    
 
@@ -9,30 +11,69 @@ class ListaMetricas extends React.Component {
   }
 
   onAprobarClick = () => {
-    for(let i=0; i < this.state.idMetricasA.length ; i++){ 
-        axios.put(`http://localhost:4000/metricas/setaprobado/${this.state.idMetricasA[i]}`)
-    }
-    for(let i=0; i < this.state.idMetricasD.length ; i++){ 
-        axios.delete(`http://localhost:4000/metricas/deletemetricas/${this.state.idMetricasD[i]}`)
-    }
+    swal({
+        title:"Aprobar",
+        text: "¿Estás seguro que deseas aprobar estas solicitudes?",
+        icon: "warning",
+        buttons: ["No", "Si"]
+    }).then(respuesta => {
+        if (respuesta){
+            let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+            for(let i=0; i < this.state.idMetricasA.length ; i++){ 
+                axios.put(`http://localhost:4000/metricas/setaprobado/${this.state.idMetricasA[i]}_Añadir_${today}`)
+            }
+            for(let i=0; i < this.state.idMetricasD.length ; i++){ 
+                axios.put(`http://localhost:4000/metricas/deletemetricas/${this.state.idMetricasD[i]}_Eliminar_${today}`)
+            }
+            this.setState( {
+                idMetricasA: [],
+                idMetricasD: []
+              })
+            swal({
+                text: "Las solicitudes se aceptaron correctamente",
+                icon: "success",
+                timer: "2000"
+            })
+        }
+    })
   }
 
   onRechazarClick = () => {
-    for(let i=0; i < this.state.idMetricasA.length ; i++){ 
-        axios.delete(`http://localhost:4000/metricas/deletemetricas/${this.state.idMetricasA[i]}`)
-    }
-    for(let i=0; i < this.state.idMetricasD.length ; i++){ 
-        axios.put(`http://localhost:4000/metricas/setaprobado/${this.state.idMetricasD[i]}`)
-    }
+    swal({
+        title:"Rechazar",
+        text: "¿Estás seguro que deseas rechazar estas solicitudes?",
+        icon: "warning",
+        buttons: ["No", "Si"]
+    }).then(respuesta => {
+        if (respuesta){
+            let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+            for(let i=0; i < this.state.idMetricasA.length ; i++){ 
+                axios.put(`http://localhost:4000/metricas/deletemetricas/${this.state.idMetricasA[i]}_Añadir_${today}`)
+            }
+            for(let i=0; i < this.state.idMetricasD.length ; i++){ 
+                axios.put(`http://localhost:4000/metricas/setaprobado/${this.state.idMetricasD[i]}_Eliminar_${today}`)
+            }
+            this.setState( {
+                idMetricasA: [],
+                idMetricasD: []
+              })
+            swal({
+                text: "Las solicitudes se rechazaron correctamente",
+                icon: "success",
+                timer: "2000"
+            })
+        }
+    })
+
   }
 
   render(){
     const AStyle = {
-        color: 'green'
+        color: 'rgb(48, 147, 59)'
     };
 
     const DStyle = {
-        color: 'red'
+        color: 'rgb(170, 25, 25)'
     };
 
     return(
@@ -45,7 +86,7 @@ class ListaMetricas extends React.Component {
             <th>ID</th>
             <th>Nombre</th>
             <th>Indicadores</th>
-            <th>Petición</th>
+            <th>Tipo de solicitud</th>
         </tr>
         </thead>
         <tbody>

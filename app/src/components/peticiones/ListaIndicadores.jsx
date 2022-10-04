@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import dateFormat, {masks} from "dateformat";
+import swal from 'sweetalert'
 
 class ListaIndicadores extends React.Component {    
 
@@ -9,30 +11,69 @@ class ListaIndicadores extends React.Component {
   }
 
   onAprobarClick = () => {
-    for(let i=0; i < this.state.idIndicadoresA.length ; i++){ 
-        axios.put(`http://localhost:4000/indicadores/setaprobado/${this.state.idIndicadoresA[i]}`)
-    }
-    for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
-        axios.delete(`http://localhost:4000/indicadores/deleteindicadores/${this.state.idIndicadoresD[i]}`)
-    }
+    swal({
+        title:"Aprobar",
+        text: "¿Estás seguro que deseas aprobar estas solicitudes?",
+        icon: "warning",
+        buttons: ["No", "Si"]
+    }).then(respuesta => {
+        if (respuesta){
+            let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+            for(let i=0; i < this.state.idIndicadoresA.length ; i++){ 
+                axios.put(`http://localhost:4000/indicadores/setaprobado/${this.state.idIndicadoresA[i]}_Añadir_${today}`)
+            }
+            for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
+                axios.put(`http://localhost:4000/indicadores/deleteindicadores/${this.state.idIndicadoresD[i]}_Eliminar_${today}`)
+            }
+            this.setState( {
+                idIndicadoresA: [],
+                idIndicadoresD: []
+              })
+            swal({
+                text: "Las solicitudes se aceptaron correctamente",
+                icon: "success",
+                timer: "2000"
+            })
+        }
+    })
   }
 
   onRechazarClick = () => {
-    for(let i=0; i < this.state.idIndicadoresA.length ; i++){ 
-        axios.delete(`http://localhost:4000/indicadores/deleteindicadores/${this.state.idIndicadoresA[i]}`)
-    }
-    for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
-        axios.put(`http://localhost:4000/indicadores/setaprobado/${this.state.idIndicadoresD[i]}`)
-    }
+    swal({
+        title:"Rechazar",
+        text: "¿Estás seguro que deseas rechazar estas solicitudes?",
+        icon: "warning",
+        buttons: ["No", "Si"]
+    }).then(respuesta => {
+        if (respuesta){
+            let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+            for(let i=0; i < this.state.idIndicadoresA.length ; i++){ 
+                axios.put(`http://localhost:4000/indicadores/deleteindicadores/${this.state.idIndicadoresA[i]}_Añadir_${today}`)
+            }
+            for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
+                axios.put(`http://localhost:4000/indicadores/setaprobado/${this.state.idIndicadoresD[i]}_Eliminar_${today}`)
+            }
+            this.setState( {
+                idIndicadoresA: [],
+                idIndicadoresD: []
+              })
+            swal({
+                text: "Las solicitudes se rechazaron correctamente",
+                icon: "success",
+                timer: "2000"
+            })
+        }
+    })
+
   }
 
   render(){
     const AStyle = {
-        color: 'green'
+        color: 'rgb(48, 147, 59)'
     };
 
     const DStyle = {
-        color: 'red'
+        color: 'rgb(170, 25, 25)'
     };
 
     return(
@@ -53,7 +94,7 @@ class ListaIndicadores extends React.Component {
             <th>Fuente de información</th>
             <th>Responsable</th>
             <th>Frecuencia de medicion</th>
-            <th>Petición</th>
+            <th>Tipo de solicitud</th>
         </tr>
         </thead>
         <tbody>

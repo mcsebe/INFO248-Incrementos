@@ -27,6 +27,17 @@ export default function  TablaMetrica(props) {
     </thead>
     <tbody>
       {metricas.map((metrica) => (
+        metrica.Aprobado === 2 ?
+        <tr key={metrica.id} style={{backgroundColor: "#EEEDED", color: "#A7A4A4"}}>
+          {metrica.antiguaid === '0'?
+          <td>{metrica.id}</td>
+          :
+          <td>{metrica.antiguaid}</td>
+          }
+          <td>{metrica.nombre}</td>
+          <td>Eliminado</td>
+        </tr>
+      :
         metrica.Aprobado === 1 ?
           <tr key={metrica.id}>
             <td>{metrica.id}</td>
