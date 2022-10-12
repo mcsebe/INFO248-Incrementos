@@ -7,7 +7,8 @@ class ListaIndicadores extends React.Component {
 
   state = {
     idIndicadoresA: [],
-    idIndicadoresD: []
+    idIndicadoresD: [],
+    idIndicadoresE: []
   }
 
   onAprobarClick = () => {
@@ -25,9 +26,25 @@ class ListaIndicadores extends React.Component {
             for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
                 axios.put(`http://localhost:4000/indicadores/deleteindicadores/${this.state.idIndicadoresD[i]}_Eliminar_${today}`)
             }
+            for(let i=0; i < this.state.idIndicadoresE.length ; i++){ 
+                let e = this.state.idIndicadoresE[i];
+                console.log("e: ", e);
+                let ids_aux = e.split(",");
+                console.log("ids_aux: ", ids_aux, "tipo: ", typeof ids_aux);
+                
+                
+                let id_eliminar = ids_aux[1];
+                let id_reemplazar = ids_aux[0];
+                
+                //console.log("funciona: ", myArray);
+                axios.delete(`http://localhost:4000/indicadores/eliminarindicador/${id_eliminar}`)
+                axios.put(`http://localhost:4000/indicadores/setaprobado/${id_reemplazar}-Editar`)
+                console.log("termina");
+            }
             this.setState( {
                 idIndicadoresA: [],
-                idIndicadoresD: []
+                idIndicadoresD: [],
+                idIndicadoresE: []
               })
             swal({
                 text: "Las solicitudes se aceptaron correctamente",
@@ -53,9 +70,16 @@ class ListaIndicadores extends React.Component {
             for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
                 axios.put(`http://localhost:4000/indicadores/setaprobado/${this.state.idIndicadoresD[i]}_Eliminar_${today}`)
             }
+            for(let i=0; i < this.state.idIndicadoresE.length ; i++){ 
+                let e = this.state.idIndicadoresE[i];
+                let ids_aux = e.split(",");
+                let id_reemplazar = ids_aux[0];
+                axios.delete(`http://localhost:4000/indicadores/eliminarindicador/${id_reemplazar}`)
+            }
             this.setState( {
                 idIndicadoresA: [],
-                idIndicadoresD: []
+                idIndicadoresD: [],
+                idIndicadoresE: []
               })
             swal({
                 text: "Las solicitudes se rechazaron correctamente",
@@ -119,7 +143,7 @@ class ListaIndicadores extends React.Component {
                         this.state.idIndicadoresA.push(e.target.value)
                     }/>
                 </td>
-                :
+                : indicador.Peticion === 'Eliminar' ?
                 <td>
                     <input
                     className='checkbox'
@@ -131,6 +155,19 @@ class ListaIndicadores extends React.Component {
                         : 
                         this.state.idIndicadoresD.push(e.target.value)
                     }/>
+                </td>
+                :
+                <td>
+                <input
+                className='checkbox'
+                type="checkbox"
+                name="lang"
+                value={[indicador.id, indicador.id_editado]}
+                onChange={e => this.state.idIndicadoresE.includes(e.target.value) ? this.state.idIndicadoresE = this.state.idIndicadoresE.filter((item) => 
+                    item !== e.target.value) 
+                    : 
+                    this.state.idIndicadoresE.push(e.target.value)
+                  }/>
                 </td>
                 }
                 <td>{indicador.id}</td>

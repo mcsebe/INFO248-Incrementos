@@ -19,7 +19,7 @@ class indicadoresServicios{
         const ADD_QUERY = `insert into indicadores values ('${req.body.id}',
                         '${req.body.CalificacionCORFO}','${req.body.NumeroIndicador}','${req.body.MisionUniversitaria}',
                         '${req.body.nombre}','${req.body.TipoIndicador}',${req.body.eje},'${req.body.Unidad}',
-                        '${req.body.FuenteInformacion}', '${req.body.Responsable}', '${req.body.Frecuencia}', 0, 'Añadir', 0)`
+                        '${req.body.FuenteInformacion}', '${req.body.Responsable}', '${req.body.Frecuencia}', 0, 'Añadir',0,null)`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
             else res.send('addindicadores')
@@ -40,13 +40,60 @@ class indicadoresServicios{
 
         if(solicitud === 'Añadir'){
             sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 1, solicitud: 'Añadir', estado: 'Aprobado', fecha: now }} );
-        }else{
+        }if(solicitud === 'Eliminar'){
             sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 1, solicitud: 'Eliminar', estado: 'Rechazado', fecha: now }} );  
+        }else{
+            sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 1, solicitud: 'Editar', estado: 'Aprobado', fecha: now }} );
         }
     }
 
     async setPeticion(res,id) {
         const ADD_QUERY = `UPDATE indicadores SET Peticion = 'Eliminar', Aprobado = 0 WHERE id = '${id}';`
+        connection.query(ADD_QUERY, (err) =>{
+            if(err) console.log(err)
+        })   
+    }
+    async editarIndicador(res,req) {
+        const ADD_QUERY = `INSERT INTO indicadores(
+        id,
+        CalificacionCORFO,
+        NumeroIndicador,
+        MisionUniversitaria,
+        nombre,
+        TipoIndicador,
+        eje,
+        Unidad,
+        FuenteInformacion,
+        Responsable,
+        Frecuencia,
+        Aprobado,
+        Peticion,
+        antiguaid,
+        id_editado 
+        ) VALUES(
+        "${req.body.idAux}",
+        "${req.body.CalificacionCORFO}", 
+        "${req.body.NumeroIndicador}",
+        "${req.body.MisionUniversitaria}",
+        "${req.body.nombre}",
+        "${req.body.TipoIndicador}",
+        "${req.body.eje}",
+        "${req.body.Unidad}",
+        "${req.body.FuenteInformacion}",
+        "${req.body.Responsable}",
+        "${req.body.Frecuencia}",
+        "${req.body.Aprobado}",
+        "${req.body.Peticion}",
+        "${req.body.antiguaid}",
+        "${req.body.id}"
+        );`
+        connection.query(ADD_QUERY, (err) =>{
+            if(err) console.log(err)
+        })   
+    }
+
+    async eliminarIndicador(res,id){
+        const ADD_QUERY = `DELETE FROM indicadores WHERE id = "${id}";`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })   
@@ -75,24 +122,6 @@ class indicadoresServicios{
             sHistorial.createHistorial(0,{body: { id_imm: `${D}`, tipo: 1, solicitud: 'Añadir', estado: 'Rechazado', fecha: now }} );   
         }
 
-    }
-    async editarIndicador(res,req) {
-        const ADD_QUERY = `UPDATE indicadores SET 
-        CalificacionCORFO = "${req.body.CalificacionCORFO}", 
-        NumeroIndicador = "${req.body.NumeroIndicador}",
-        MisionUniversitaria = "${req.body.MisionUniversitaria}",
-        nombre = "${req.body.nombre}",
-        TipoIndicador = "${req.body.TipoIndicador}",
-        eje = "${req.body.eje}",
-        Unidad = "${req.body.Unidad}",
-        FuenteInformacion = "${req.body.FuenteInformacion}",
-        Responsable = "${req.body.Responsable}",
-        Frecuencia = "${req.body.Frecuencia}",
-        Aprobado = 0, Peticion = 'Editar' 
-        WHERE id = '${req.body.idantigua}';`
-        connection.query(ADD_QUERY, (err) =>{
-            if(err) console.log(err)
-        })
     }
 
 }

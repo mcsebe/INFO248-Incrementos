@@ -101,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `indicadores` (
   `Aprobado` int(50) DEFAULT NULL,
   `Peticion` varchar(50) DEFAULT NULL,
   `antiguaid` varchar(50) DEFAULT NULL,
+  `id_editado` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 

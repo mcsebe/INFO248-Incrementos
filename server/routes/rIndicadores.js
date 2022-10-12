@@ -11,10 +11,6 @@ enrutador.post('/addindicadores', (req,res)=> {
   sIndicadores.createIndicador(res,req);
 })
 
-enrutador.put('/setmetricas', (req,res)=> {
-  sIndicadores.setMetricas(res,req);
-})
-
 enrutador.put('/setmetas', (req,res)=> {
   sIndicadores.setMetas(res,req);
 })
@@ -33,6 +29,10 @@ enrutador.put('/deleteindicadores/:id', (req,res)=> {
 
 enrutador.put('/editarindicador', (req,res)=> {
   sIndicadores.editarIndicador(res,req)
+})
+
+enrutador.delete('/eliminarindicador/:id', (req,res)=> {
+  sIndicadores.eliminarIndicador(res,req.params.id);
 })
 
 module.exports = enrutador;
