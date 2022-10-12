@@ -5,8 +5,8 @@ import axios from "axios";
 export default function Datos() {
 
   const [indicadores, setIndicadores] = useState([]);
-  const [metricas, setMetricas] = useState([]);
   const [metas, setMetas] = useState([]);
+  const [ejes, setEjes] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,16 +18,16 @@ export default function Datos() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:4000/metricas/lista');
-      setMetricas(res.data);
+      const res = await axios.get('http://localhost:4000/metas/lista');
+      setMetas(res.data);
     };
     fetchPosts();
   }, );
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:4000/metas/lista');
-      setMetas(res.data);
+      const res = await axios.get('http://localhost:4000/ejes/lista');
+      setEjes(res.data);
     };
     fetchPosts();
   }, );
@@ -50,7 +50,7 @@ export default function Datos() {
                 <th>Fuente de información</th>
                 <th>Responsable</th>
                 <th>Frecuencia de medicion</th>
-                <th>Métrica</th>
+                <th>Año</th>
                 <th>Meta</th>
             </tr>
             </thead>
@@ -65,29 +65,40 @@ export default function Datos() {
                 <td>{indicador.MisionUniversitaria}</td>
                 <td>{indicador.nombre}</td>
                 <td>{indicador.TipoIndicador}</td>
-                <td>{indicador.eje}</td>
+                {ejes.map((eje) => (
+                  indicador.eje === eje.id?
+                  <td>{eje.nombre}</td>
+                  :
+                  <></>
+                ))}
                 <td>{indicador.Unidad}</td>
                 <td>{indicador.FuenteInformacion}</td>
                 <td>{indicador.Responsable}</td>
                 <td>{indicador.Frecuencia}</td>
-                <td>
-                {metricas.map((metrica) => (
-                    indicador.idMetrica === metrica.id && metrica.Aprobado === 1 ?
-                    <div>{metrica.nombre}</div>
-                    :
-                    <div/>
-                    ))
-                }
-                </td>
 
                 <td>
-                {metas.map((meta) => (
-                    indicador.idMeta === meta.id && meta.Aprobado === 1 ?
-                    <div>{meta.nombre}</div>
-                    :
-                    <div/>
-                    ))
-                }
+                  {metas.map((meta) => (
+                      indicador.id === meta.idindicador && meta.Aprobado === 1 ?
+                      <div>
+                        {meta.fecha}
+                      <br/>
+                      </div>
+                      :
+                      <></>
+                      ))
+                  }
+                </td>
+                <td>
+                  {metas.map((meta) => (
+                      indicador.id === meta.idindicador && meta.Aprobado === 1 ?
+                      <div>
+                      <b>{meta.cantidad}</b>
+                      <br/>
+                      </div>
+                      :
+                      <></>
+                      ))
+                  }
                 </td>
 
             </tr>

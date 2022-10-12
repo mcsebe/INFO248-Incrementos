@@ -27,8 +27,12 @@ enrutador.put('/setpeticion/:id', (req,res)=> {
   sIndicadores.setPeticion(res,req.params.id);
 })
 
-enrutador.delete('/deleteindicadores/:id', (req,res)=> {
+enrutador.put('/deleteindicadores/:id', (req,res)=> {
   sIndicadores.deleteIndicador(res,req.params.id)
+})
+
+enrutador.put('/editarindicador', (req,res)=> {
+  sIndicadores.editarIndicador(res,req)
 })
 
 module.exports = enrutador;
