@@ -16,6 +16,7 @@ class AddIndicador extends React.Component {
     FuenteInformacion : '',
     Responsable: '',
     Frecuencia: 'Mensual',
+    Descripcion: '',
 
     usado: false,
     num: false,
@@ -108,6 +109,7 @@ class AddIndicador extends React.Component {
         FuenteInformacion : this.state.FuenteInformacion,
         Responsable : this.state.Responsable,
         Frecuencia : this.state.Frecuencia,
+        Descripcion: this.state.Descripcion
       })
 
       this.setState( {
@@ -121,6 +123,7 @@ class AddIndicador extends React.Component {
         FuenteInformacion : '',
         Responsable: '',
         Frecuencia: 'Mensual',
+        Descripcion: '',
 
         num: false,
         nom: false,
@@ -272,6 +275,11 @@ class AddIndicador extends React.Component {
           <option value="Anual">Anual</option>
         </select>
         
+        <label>Descripción (opcional)</label>
+          <input type="text" value={this.state.Descripcion} onChange={e => this.setState({
+            Descripcion: e.target.value
+          })}/>
+    
       </form>
       <button onClick={
           () => this.onAddClick()

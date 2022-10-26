@@ -100,12 +100,12 @@ export default function  TablaIndicadores() {
             <td>
               <button className="button muted-button edit" onClick= {()=> Editar(indicador)}>Editar</button>
               
-              <Modal
+            <Modal
               estado ={estadoModal1}
               cambiarEstado={cambiarEstadoModal1}
-              titulo={`Editar indicador ID: ${indicador.id}`}
-              key = {indicador.id}
-              indicador = {indicador}
+              titulo={`Editar indicador ID: ${indi.id}`}
+              key = {indi.id}
+              indicador = {indi}
               mostrarHeader={true}
               mostrarOverlay={true}
               posicionModal={'center'}>

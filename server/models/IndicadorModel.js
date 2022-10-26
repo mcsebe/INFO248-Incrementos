@@ -16,7 +16,7 @@ class indicadoresServicios{
     }
 
     async createIndicador(res,req) {
-        const ADD_QUERY = `insert into indicadores values ('${req.body.id}','${req.body.CalificacionCORFO}','${req.body.NumeroIndicador}','${req.body.MisionUniversitaria}','${req.body.nombre}','${req.body.TipoIndicador}',${req.body.eje},'${req.body.Unidad}','${req.body.FuenteInformacion}', '${req.body.Responsable}', '${req.body.Frecuencia}', 0, 'Añadir',0,null)`
+        const ADD_QUERY = `insert into indicadores values ('${req.body.id}','${req.body.CalificacionCORFO}','${req.body.NumeroIndicador}','${req.body.MisionUniversitaria}','${req.body.nombre}','${req.body.TipoIndicador}',${req.body.eje},'${req.body.Unidad}','${req.body.FuenteInformacion}', '${req.body.Responsable}', '${req.body.Frecuencia}', 0, 'Añadir',0,null, '${req.body.Descripcion}')`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
             else res.send('addindicadores')
@@ -51,39 +51,7 @@ class indicadoresServicios{
         })   
     }
     async editarIndicador(res,req) {
-        const ADD_QUERY = `INSERT INTO indicadores(
-        id,
-        CalificacionCORFO,
-        NumeroIndicador,
-        MisionUniversitaria,
-        nombre,
-        TipoIndicador,
-        eje,
-        Unidad,
-        FuenteInformacion,
-        Responsable,
-        Frecuencia,
-        Aprobado,
-        Peticion,
-        antiguaid,
-        id_editado 
-        ) VALUES(
-        "${req.body.idAux}",
-        "${req.body.CalificacionCORFO}", 
-        "${req.body.NumeroIndicador}",
-        "${req.body.MisionUniversitaria}",
-        "${req.body.nombre}",
-        "${req.body.TipoIndicador}",
-        "${req.body.eje}",
-        "${req.body.Unidad}",
-        "${req.body.FuenteInformacion}",
-        "${req.body.Responsable}",
-        "${req.body.Frecuencia}",
-        "${req.body.Aprobado}",
-        "${req.body.Peticion}",
-        "${req.body.antiguaid}",
-        "${req.body.id}"
-        );`
+        const ADD_QUERY = `INSERT INTO indicadores(id,CalificacionCORFO,NumeroIndicador,MisionUniversitaria,nombre,TipoIndicador,eje,Unidad,FuenteInformacion,Responsable,Frecuencia,Aprobado,Peticion,antiguaid,id_editado,Descripcion) VALUES("${req.body.idAux}","${req.body.CalificacionCORFO}", "${req.body.NumeroIndicador}","${req.body.MisionUniversitaria}","${req.body.nombre}","${req.body.TipoIndicador}","${req.body.eje}","${req.body.Unidad}","${req.body.FuenteInformacion}","${req.body.Responsable}","${req.body.Frecuencia}","${req.body.Aprobado}","${req.body.Peticion}","${req.body.antiguaid}","${req.body.id}","${req.body.Descripcion}");`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })   

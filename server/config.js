@@ -2,7 +2,7 @@ const config = {
     db: {
       host: "localhost",
       user: "root",
-      password: "",
+      password: "1306",
       database: "nodedb",
     },
     listPerPage: 10,
