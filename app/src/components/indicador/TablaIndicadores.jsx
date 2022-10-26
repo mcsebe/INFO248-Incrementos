@@ -13,8 +13,10 @@ export default function  TablaIndicadores() {
   const [indi, setIndi] = useState([]);
 
   const Editar = (indi) => {
-    cambiarEstadoModal1(!estadoModal1);
-    setIndi(indi);
+    setTimeout(function(){
+      cambiarEstadoModal1(!estadoModal1);
+      setIndi(indi);
+    }, 300);
   }
 
   useEffect(() => {
