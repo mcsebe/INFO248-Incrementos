@@ -38,7 +38,7 @@ class ListaIndicadores extends React.Component {
                 
                 //console.log("funciona: ", myArray);
                 axios.delete(`http://localhost:4000/indicadores/eliminarindicador/${id_eliminar}`)
-                axios.put(`http://localhost:4000/indicadores/setaprobado/${id_reemplazar}-Editar`)
+                axios.put(`http://localhost:4000/indicadores/setaprobado/${id_reemplazar}_Editar_${today}`)
                 console.log("termina");
             }
             this.setState( {

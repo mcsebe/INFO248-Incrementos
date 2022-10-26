@@ -116,7 +116,7 @@ class AddIndicador extends React.Component {
         MisionUniversitaria : 'Primera',
         nombre : '',
         TipoIndicador: 'Entrada resultado',
-        eje : 'Gobernanza y Sinergias',
+        eje : 1,
         Unidad : '',
         FuenteInformacion : '',
         Responsable: '',
