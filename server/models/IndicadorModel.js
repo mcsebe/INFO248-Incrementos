@@ -16,7 +16,7 @@ class indicadoresServicios{
     }
 
     async createIndicador(res,req) {
-        const ADD_QUERY = `insert into indicadores values ('${req.body.id}','${req.body.CalificacionCORFO}','${req.body.NumeroIndicador}','${req.body.MisionUniversitaria}','${req.body.nombre}','${req.body.TipoIndicador}',${req.body.eje},'${req.body.Unidad}','${req.body.FuenteInformacion}', '${req.body.Responsable}', '${req.body.Frecuencia}', 0, 'Añadir',0,null, '${req.body.Descripcion}')`
+        const ADD_QUERY = `insert into indicadores values ('${req.body.id}','${req.body.CalificacionCORFO}','${req.body.NumeroIndicador}','${req.body.MisionUniversitaria}','${req.body.nombre}','${req.body.TipoIndicador}',${req.body.eje},'${req.body.Unidad}','${req.body.FuenteInformacion}', '${req.body.Responsable}', '${req.body.Frecuencia}', 0, 'Añadir',0,null, '${req.body.Descripcion}', 0)`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
             else res.send('addindicadores')
@@ -51,17 +51,42 @@ class indicadoresServicios{
         })   
     }
     async editarIndicador(res,req) {
-        const ADD_QUERY = `INSERT INTO indicadores(id,CalificacionCORFO,NumeroIndicador,MisionUniversitaria,nombre,TipoIndicador,eje,Unidad,FuenteInformacion,Responsable,Frecuencia,Aprobado,Peticion,antiguaid,id_editado,Descripcion) VALUES("${req.body.idAux}","${req.body.CalificacionCORFO}", "${req.body.NumeroIndicador}","${req.body.MisionUniversitaria}","${req.body.nombre}","${req.body.TipoIndicador}","${req.body.eje}","${req.body.Unidad}","${req.body.FuenteInformacion}","${req.body.Responsable}","${req.body.Frecuencia}","${req.body.Aprobado}","${req.body.Peticion}","${req.body.antiguaid}","${req.body.id}","${req.body.Descripcion}");`
+        const ADD_QUERY = `INSERT INTO indicadores VALUES("${req.body.idAux}","${req.body.CalificacionCORFO}", "${req.body.NumeroIndicador}","${req.body.MisionUniversitaria}","${req.body.nombre}","${req.body.TipoIndicador}","${req.body.eje}","${req.body.Unidad}","${req.body.FuenteInformacion}","${req.body.Responsable}","${req.body.Frecuencia}","${req.body.Aprobado}","${req.body.Peticion}","${req.body.antiguaid}","${req.body.id}","${req.body.Descripcion}", 0);`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
-        })   
+        })
+
+        const ADD_QUERY2 = `UPDATE indicadores SET editando = 1 WHERE id = '${req.body.id}';`
+        connection.query(ADD_QUERY2, (err) =>{
+            if(err) console.log(err)
+        })  
+    }
+
+    async eliminarIndicadorEditado(res,id){
+        const myArray = id.split("_");
+        const ideliminar = myArray[0];
+        const idantigua = myArray[1];
+        const ADD_QUERY = `DELETE FROM indicadores WHERE id = "${ideliminar}";`
+        connection.query(ADD_QUERY, (err) =>{
+            if(err) console.log(err)
+        })
+        const ADD_QUERY2 = `UPDATE indicadores SET editando = 0 WHERE id = '${idantigua}';`
+        connection.query(ADD_QUERY2, (err) =>{
+            if(err) console.log(err)
+        })  
     }
 
     async eliminarIndicador(res,id){
-        const ADD_QUERY = `DELETE FROM indicadores WHERE id = "${id}";`
+        const myArray = id.split("_");
+        const ideliminar = myArray[0];
+        const idnueva = myArray[1];
+        const ADD_QUERY = `DELETE FROM indicadores WHERE id = "${ideliminar}";`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
-        })   
+        })
+
+        sMetas.cambiarMetasIndicador(0,{body: { ideliminar: `${ideliminar}`, idnueva: `${idnueva}`}} ); 
+
     }
 
     async deleteIndicador(res, id){

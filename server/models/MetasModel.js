@@ -85,6 +85,15 @@ class metasServicios{
         })
 
     }
+
+    async cambiarMetasIndicador(res, req){
+
+        const ADD_QUERY = `UPDATE metas SET idindicador = '${req.body.idnueva}' WHERE idindicador = '${req.body.ideliminar}';`
+        connection.query(ADD_QUERY, (err) =>{
+            if(err) console.log(err)
+        })
+
+    }
 }
 
 module.exports = {

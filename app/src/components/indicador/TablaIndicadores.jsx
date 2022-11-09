@@ -89,29 +89,35 @@ export default function  TablaIndicadores() {
             ))}
     
             <td>{indicador.Responsable}</td>
-            <td>
-              <button className="button muted-button delete" onClick={() => 
-                axios.put(`http://localhost:4000/indicadores/setpeticion/${indicador.id}`,
-                window.location.reload(true)
-                )
-                }>Eliminar</button>
-            </td>
-          
-            <td>
-              <button className="button muted-button edit" onClick= {()=> Editar(indicador)}>Editar</button>
-              
-            <Modal
-              estado ={estadoModal1}
-              cambiarEstado={cambiarEstadoModal1}
-              titulo={`Editar indicador ID: ${indi.id}`}
-              key = {indi.id}
-              indicador = {indi}
-              mostrarHeader={true}
-              mostrarOverlay={true}
-              posicionModal={'center'}>
-            </Modal>
-              
-            </td>
+
+            {indicador.editando === 1?              
+              <td>Editando ...</td>
+            
+              :
+              <>
+                <td>
+                  <button className="button muted-button delete" onClick={() => 
+                    axios.put(`http://localhost:4000/indicadores/setpeticion/${indicador.id}`,
+                    window.location.reload(true)
+                    )
+                    }>Eliminar</button>
+                </td>
+                <td>
+                  <button className="button muted-button edit" onClick= {()=> Editar(indicador)}>Editar</button>
+                  <Modal
+                    estado ={estadoModal1}
+                    cambiarEstado={cambiarEstadoModal1}
+                    titulo={`Editar indicador ID: ${indi.id}`}
+                    key = {indi.id}
+                    indicador = {indi}
+                    mostrarHeader={true}
+                    mostrarOverlay={true}
+                    posicionModal={'center'}>
+                  </Modal>
+                </td>
+              </>
+            }
+
 
           </tr>
         :

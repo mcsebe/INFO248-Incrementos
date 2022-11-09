@@ -31,6 +31,10 @@ enrutador.put('/editarindicador', (req,res)=> {
   sIndicadores.editarIndicador(res,req)
 })
 
+enrutador.delete('/eliminarindicadoreditado/:id', (req,res)=> {
+  sIndicadores.eliminarIndicadorEditado(res,req.params.id);
+})
+
 enrutador.delete('/eliminarindicador/:id', (req,res)=> {
   sIndicadores.eliminarIndicador(res,req.params.id);
 })
