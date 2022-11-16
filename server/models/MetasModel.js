@@ -15,7 +15,7 @@ class metasServicios{
 
     async createMetas(res,req) {
         const D = Math.random().toString(36).substr(2,18);
-        const ADD_QUERY = `insert into metas values ('${D}','${req.body.idindicador}','${req.body.fecha}', ${req.body.cantidad}, 'Añadir', 0, 0);`
+        const ADD_QUERY = `insert into metas values ('${D}','${req.body.idindicador}','${req.body.fecha}', ${req.body.cantidad}, 'Añadir', 0, 0, 0);`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
             else res.send('addmetas')
@@ -94,6 +94,45 @@ class metasServicios{
         })
 
     }
+
+    async editarMeta(res,req) {
+        const D = Math.random().toString(36).substr(2,18);
+
+        const ADD_QUERY = `INSERT INTO metas VALUES("${D}","${req.body.idindicador}", "${req.body.fecha}",${req.body.cantidad}, 'Editar', 0, '${req.body.id}', 0);`
+        connection.query(ADD_QUERY, (err) =>{
+            if(err) console.log(err)
+        })
+
+        const ADD_QUERY2 = `UPDATE metas SET editando = 1 WHERE id = '${req.body.id}';`
+        connection.query(ADD_QUERY2, (err) =>{
+            if(err) console.log(err)
+        })  
+    }
+
+    async eliminarMetaEditado(res,id){
+        const myArray = id.split("_");
+        const ideliminar = myArray[0];
+        const idantigua = myArray[1];
+        const ADD_QUERY = `DELETE FROM metas WHERE id = "${ideliminar}";`
+        connection.query(ADD_QUERY, (err) =>{
+            if(err) console.log(err)
+        })
+        const ADD_QUERY2 = `UPDATE metas SET editando = 0 WHERE id = '${idantigua}';`
+        connection.query(ADD_QUERY2, (err) =>{
+            if(err) console.log(err)
+        })  
+    }
+
+    async eliminarMeta(res,id){
+        const myArray = id.split("_");
+        const ideliminar = myArray[0];
+        const idnueva = myArray[1];
+        const ADD_QUERY = `DELETE FROM metas WHERE id = "${ideliminar}";`
+        connection.query(ADD_QUERY, (err) =>{
+            if(err) console.log(err)
+        })
+    }
+
 }
 
 module.exports = {

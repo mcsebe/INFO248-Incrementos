@@ -135,7 +135,7 @@ export default function  TablaIndicadores() {
           ))}
 
           <td>{indicador.Responsable}</td>
-          <td style={{color: "green"}}>Peticion Añadir</td>
+          <td style={{color: "green"}}>Solicitud Añadir</td>
         </tr>
         :indicador.Peticion === 'Eliminar'?
         <tr key={indicador.id} style={{backgroundColor: "#feb6b8a8"}}> 
@@ -151,7 +151,7 @@ export default function  TablaIndicadores() {
             ))}
 
           <td>{indicador.Responsable}</td>
-          <td style={{color: "red"}}>Peticion Eliminar</td>
+          <td style={{color: "red"}}>Solicitud Eliminar</td>
         </tr>
         :
         <tr key={indicador.id} style={{backgroundColor: "#95cdf9"}}> 
@@ -167,7 +167,7 @@ export default function  TablaIndicadores() {
         ))}
 
         <td>{indicador.Responsable}</td>
-        <td style={{color: "blue"}}>Peticion Editar</td>
+        <td style={{color: "blue"}}>Solicitud Editar</td>
       </tr>       
         ))
       }

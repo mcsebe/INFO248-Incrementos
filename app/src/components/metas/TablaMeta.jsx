@@ -1,13 +1,23 @@
 import React from 'react'
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
+import Modal from "./Modal"
+import styled from 'styled-components';
 
 
 export default function TablaMeta(props) {
 
   const [metas, setMetas] = useState([]);
   const [indicadores, setIndicadores] = useState([]);
+  const [estadoModal1, cambiarEstadoModal1] = useState(false);
 
+  const [met, setMet] = useState([]);
+  const Editar = (met) => {
+    setTimeout(function(){
+      cambiarEstadoModal1(!estadoModal1);
+      setMet(met);
+    }, 300);
+  }
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -71,11 +81,23 @@ export default function TablaMeta(props) {
                 <td>{meta.fecha}</td>
                 <td>{meta.cantidad}</td>
                 <td>
-                  {/* <button className="button muted-button">Edit</button> */}
                   <button className="button muted-button delete" onClick={() =>
                     axios.put(`http://localhost:4000/metas/setpeticion/${meta.idindicador}-${meta.fecha}`,
                       window.location.reload(true))
                   }>Eliminar</button>
+                </td>
+                <td>
+                  <button className="button muted-button edit" onClick= {()=> Editar(meta)}>Editar</button>
+                  <Modal
+                    estado ={estadoModal1}
+                    cambiarEstado={cambiarEstadoModal1}
+                    titulo={`Editar meta del indicador ${meta.idindicador} del año ${meta.fecha}`}
+                    key = {met.id}
+                    meta = {met}
+                    mostrarHeader={true}
+                    mostrarOverlay={true}
+                    posicionModal={'center'}>
+                  </Modal>
                 </td>
               </tr>
               :
@@ -100,3 +122,43 @@ export default function TablaMeta(props) {
     </table>
   )
 }
+
+const Boton = styled.button`
+display: block;
+padding: 10px 30px;
+border-radius: 100px;
+color: #fff;
+border: none;
+background: #1766DC;
+cursor: pointer;
+font-family: 'Roboto', sans-serif;
+font-weight: 500;
+transition: .3s ease all;
+
+&:hover {
+  background: #0066FF;
+}
+`;
+
+const Contenido = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+
+h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+img {
+  width: 100%;
+  vertical-align: top;
+  border-radius: 3px;
+}
+`;
