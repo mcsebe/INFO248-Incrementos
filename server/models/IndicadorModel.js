@@ -37,10 +37,12 @@ class indicadoresServicios{
 
         if(solicitud === 'Añadir'){
             sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 1, solicitud: 'Añadir', estado: 'Aprobado', fecha: now }} );
-        }if(solicitud === 'Eliminar'){
-            sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 1, solicitud: 'Eliminar', estado: 'Rechazado', fecha: now }} );  
         }else{
-            sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 1, solicitud: 'Editar', estado: 'Aprobado', fecha: now }} );
+            if(solicitud === 'Eliminar'){
+            sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 1, solicitud: 'Eliminar', estado: 'Rechazado', fecha: now }} );  
+            }else{
+                sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 1, solicitud: 'Editar', estado: 'Aprobado', fecha: now }} );
+            }
         }
     }
 
@@ -51,7 +53,7 @@ class indicadoresServicios{
         })   
     }
     async editarIndicador(res,req) {
-        const ADD_QUERY = `INSERT INTO indicadores VALUES("${req.body.idAux}","${req.body.CalificacionCORFO}", "${req.body.NumeroIndicador}","${req.body.MisionUniversitaria}","${req.body.nombre}","${req.body.TipoIndicador}","${req.body.eje}","${req.body.Unidad}","${req.body.FuenteInformacion}","${req.body.Responsable}","${req.body.Frecuencia}","${req.body.Aprobado}","${req.body.Peticion}","${req.body.antiguaid}","${req.body.id}","${req.body.Descripcion}", 0);`
+        const ADD_QUERY = `INSERT INTO indicadores VALUES("${req.body.idAux} E","${req.body.CalificacionCORFO}", "${req.body.NumeroIndicador}","${req.body.MisionUniversitaria}","${req.body.nombre}","${req.body.TipoIndicador}","${req.body.eje}","${req.body.Unidad}","${req.body.FuenteInformacion}","${req.body.Responsable}","${req.body.Frecuencia}","${req.body.Aprobado}","${req.body.Peticion}","${req.body.antiguaid}","${req.body.id}","${req.body.Descripcion}", 0);`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
@@ -66,6 +68,7 @@ class indicadoresServicios{
         const myArray = id.split("_");
         const ideliminar = myArray[0];
         const idantigua = myArray[1];
+        const now = myArray[2];
         const ADD_QUERY = `DELETE FROM indicadores WHERE id = "${ideliminar}";`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
@@ -73,19 +76,28 @@ class indicadoresServicios{
         const ADD_QUERY2 = `UPDATE indicadores SET editando = 0 WHERE id = '${idantigua}';`
         connection.query(ADD_QUERY2, (err) =>{
             if(err) console.log(err)
-        })  
+        })
+        sHistorial.createHistorial(0,{body: { id_imm: idantigua, tipo: 1, solicitud: 'Editar', estado: 'Rechazado', fecha: now }} );
     }
 
     async eliminarIndicador(res,id){
         const myArray = id.split("_");
         const ideliminar = myArray[0];
         const idnueva = myArray[1];
+        const now = myArray[2];
         const ADD_QUERY = `DELETE FROM indicadores WHERE id = "${ideliminar}";`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
+        sHistorial.setHistorial(0,{body: { D: idnueva.slice(0,-2), id: ideliminar, tipo: 1}} );
+        sMetas.cambiarMetasIndicador(0,{body: { idnueva: idnueva.slice(0,-2), ideliminar: ideliminar}} ); 
 
-        sMetas.cambiarMetasIndicador(0,{body: { ideliminar: `${ideliminar}`, idnueva: `${idnueva}`}} ); 
+        const UPDATE_QUERY = `UPDATE indicadores SET Aprobado = 1, id = "${idnueva.slice(0,-2)}"  WHERE id = "${idnueva}";`
+        connection.query(UPDATE_QUERY, (err) =>{
+            if(err) console.log(err)
+        })
+
+        sHistorial.createHistorial(0,{body: { id_imm: idnueva.slice(0,-2), tipo: 1, solicitud: 'Editar', estado: 'Aprobado', fecha: now }} );
 
     }
 

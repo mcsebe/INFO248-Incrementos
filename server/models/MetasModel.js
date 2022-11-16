@@ -37,7 +37,11 @@ class metasServicios{
         if(solicitud === 'Añadir'){
             sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 2, solicitud: 'Añadir', estado: 'Aprobado', fecha: now }} );
         }else{
+            if(solicitud === 'Eliminar'){
             sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 2, solicitud: 'Eliminar', estado: 'Rechazado', fecha: now }} );  
+            }else{
+                sHistorial.createHistorial(0,{body: { id_imm: id, tipo: 2, solicitud: 'Editar', estado: 'Aprobado', fecha: now }} );
+            }
         }
     }
     
@@ -113,6 +117,7 @@ class metasServicios{
         const myArray = id.split("_");
         const ideliminar = myArray[0];
         const idantigua = myArray[1];
+        const now = myArray[2];
         const ADD_QUERY = `DELETE FROM metas WHERE id = "${ideliminar}";`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
@@ -120,7 +125,8 @@ class metasServicios{
         const ADD_QUERY2 = `UPDATE metas SET editando = 0 WHERE id = '${idantigua}';`
         connection.query(ADD_QUERY2, (err) =>{
             if(err) console.log(err)
-        })  
+        })
+        sHistorial.createHistorial(0,{body: { id_imm: idantigua, tipo: 2, solicitud: 'Editar', estado: 'Rechazado', fecha: now }} );
     }
 
     async eliminarMeta(res,id){
@@ -131,6 +137,7 @@ class metasServicios{
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
+        sHistorial.setHistorial(0,{body: { D: idnueva, id: ideliminar, tipo: 2}} ); 
     }
 
 }

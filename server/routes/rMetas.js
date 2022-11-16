@@ -28,11 +28,11 @@ enrutador.put('/editarmeta', (req,res)=> {
 })
 
 enrutador.delete('/eliminarmetaeditado/:id', (req,res)=> {
-    sIndicadores.eliminarMetaEditado(res,req.params.id);
+  sMetas.eliminarMetaEditado(res,req.params.id);
   })
   
 enrutador.delete('/eliminarmeta/:id', (req,res)=> {
-    sIndicadores.eliminarMeta(res,req.params.id);
+  sMetas.eliminarMeta(res,req.params.id);
 })
 
 module.exports = enrutador;

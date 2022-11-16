@@ -36,10 +36,7 @@ class ListaIndicadores extends React.Component {
                 let id_eliminar = ids_aux[1];
                 let id_reemplazar = ids_aux[0];
                 
-                //console.log("funciona: ", myArray);
-                axios.delete(`http://localhost:4000/indicadores/eliminarindicador/${id_eliminar}_${id_reemplazar}`)
-                axios.put(`http://localhost:4000/indicadores/setaprobado/${id_reemplazar}_Editar_${today}`)
-                console.log("termina");
+                axios.delete(`http://localhost:4000/indicadores/eliminarindicador/${id_eliminar}_${id_reemplazar}_${today}`)
             }
             this.setState( {
                 idIndicadoresA: [],
@@ -75,7 +72,7 @@ class ListaIndicadores extends React.Component {
                 let ids_aux = e.split(",");
                 let id_reemplazar = ids_aux[0];
                 let id = ids_aux[1];
-                axios.delete(`http://localhost:4000/indicadores/eliminarindicadoreditado/${id_reemplazar}_${id}`)
+                axios.delete(`http://localhost:4000/indicadores/eliminarindicadoreditado/${id_reemplazar}_${id}_${today}`)
             }
             this.setState( {
                 idIndicadoresA: [],
