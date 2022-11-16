@@ -76,10 +76,15 @@ export default function TablaMeta(props) {
             </tr>
             :
             meta.Aprobado === 1 ?
+            
               <tr>
                 <td>{meta.idindicador}</td>
                 <td>{meta.fecha}</td>
                 <td>{meta.cantidad}</td>
+              {meta.editando === 1?            
+                <td>Editando ...</td>
+                :
+                <>
                 <td>
                   <button className="button muted-button delete" onClick={() =>
                     axios.put(`http://localhost:4000/metas/setpeticion/${meta.idindicador}-${meta.fecha}`,
@@ -99,6 +104,8 @@ export default function TablaMeta(props) {
                     posicionModal={'center'}>
                   </Modal>
                 </td>
+                </>
+              }
               </tr>
               :
               meta.Peticion === 'Añadir' ?
@@ -109,12 +116,20 @@ export default function TablaMeta(props) {
                   <td style={{ color: "green" }}>Peticion Añadir</td>
                 </tr>
                 :
-                <tr key={meta.idindicador} style={{ backgroundColor: "#feb6b8a8" }}>
+                meta.Peticion === 'Eliminar' ?
+                  <tr key={meta.idindicador} style={{ backgroundColor: "#feb6b8a8" }}>
+                    <td>{meta.idindicador}</td>
+                    <td>{meta.fecha}</td>
+                    <td>{meta.cantidad}</td>
+                    <td style={{ color: "red" }}>Peticion Eliminar</td>
+                  </tr>
+                :
+                <tr key={meta.idindicador} style={{ backgroundColor: "#95cdf9" }}>
                   <td>{meta.idindicador}</td>
                   <td>{meta.fecha}</td>
                   <td>{meta.cantidad}</td>
-                  <td style={{ color: "red" }}>Peticion Eliminar</td>
-                </tr>
+                 <td style={{color: "blue"}}>Solicitud Editar</td>
+                 </tr>
         ))
 
         }
