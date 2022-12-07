@@ -60,7 +60,7 @@ export default function TablaMeta(props) {
               <td>Eliminado</td>
             </tr>
             :
-            meta.Aprobado === 1 ?
+            meta.Aprobado === 1 || meta.Aprobado === 3?
             
               <tr>
                 <td>{meta.idindicador}</td>

@@ -67,7 +67,7 @@ export default function  TablaIndicadores() {
           <td>Eliminado</td>
         </tr>
       :
-        indicador.Aprobado === 1 ?
+        indicador.Aprobado === 1 ||  indicador.Aprobado === 3?
           <tr key={indicador.id}>
             <td>{indicador.id}</td>
             <td>{indicador.nombre}</td>
