@@ -43,11 +43,14 @@ class ListaIndicadores extends React.Component {
                 idIndicadoresD: [],
                 idIndicadoresE: []
               })
-            swal({
-                text: "Las solicitudes se aceptaron correctamente",
+              swal({
+                text: "'Solicitud enviada correctamente'",
                 icon: "success",
                 timer: "2000"
-            })
+              }).then(function(){ 
+                window.location.reload(true);
+                }
+              )
         }
     })
   }
@@ -79,11 +82,14 @@ class ListaIndicadores extends React.Component {
                 idIndicadoresD: [],
                 idIndicadoresE: []
               })
-            swal({
-                text: "Las solicitudes se rechazaron correctamente",
+              swal({
+                text: "'Solicitud enviada correctamente'",
                 icon: "success",
                 timer: "2000"
-            })
+              }).then(function(){ 
+                window.location.reload(true);
+                }
+              )
         }
     })
 

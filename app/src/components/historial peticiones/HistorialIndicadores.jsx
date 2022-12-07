@@ -39,11 +39,7 @@ class HistorialIndicadores extends React.Component {
             {this.props.indicadores.map((indicador) => (
                 historia.id_imm === indicador.id && historia.tipo === 1?
                 <>
-                    {indicador.antiguaid === '0'?
-
-                        <td>{indicador.id}</td>
-                        :
-                        <td>{indicador.antiguaid}</td>}
+                    <td>{indicador.id}</td>
                     <td>{indicador.CalificacionCORFO}</td>
                     <td>{indicador.NumeroIndicador}</td>
                     <td>{indicador.MisionUniversitaria}</td>

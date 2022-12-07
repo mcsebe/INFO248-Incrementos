@@ -18,7 +18,7 @@ export default function Peticiones() {
         setIndicadores(res.data);
       };
       fetchPosts();
-    }, );
+    }, []);
 
       useEffect(() => {
         const fetchPosts = async () => {
@@ -26,7 +26,7 @@ export default function Peticiones() {
           setMetas(res.data);
         };
         fetchPosts();
-      }, );
+      }, []);
 
       useEffect(() => {
         const fetchPosts = async () => {
@@ -34,7 +34,7 @@ export default function Peticiones() {
           setEjes(res.data);
         };
         fetchPosts();
-      }, );
+      }, []);
 
   return (
     <div className="container">

@@ -18,7 +18,7 @@ export default function HistorialPeticiones() {
         setIndicadores(res.data);
       };
       fetchPosts();
-    }, );
+    }, []);
 
       useEffect(() => {
         const fetchPosts = async () => {
@@ -26,7 +26,7 @@ export default function HistorialPeticiones() {
           setMetas(res.data);
         };
         fetchPosts();
-      }, );
+      }, []);
 
       useEffect(() => {
         const fetchPosts = async () => {
@@ -34,7 +34,7 @@ export default function HistorialPeticiones() {
           setHistorial(res.data);
         };
         fetchPosts();
-      }, );
+      }, []);
 
       useEffect(() => {
         const fetchPosts = async () => {
@@ -42,7 +42,7 @@ export default function HistorialPeticiones() {
           setEjes(res.data);
         };
         fetchPosts();
-      }, );
+      }, []);
 
   return (
     <div className="container">

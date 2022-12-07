@@ -83,7 +83,10 @@ class AddMeta extends React.Component {
           text: "'Solicitud enviada correctamente'",
           icon: "success",
           timer: "2000"
-        })
+        }).then(function(){ 
+          window.location.reload(true);
+          }
+        )
       }
   
   }

@@ -22,6 +22,7 @@ mostrarOverlay, posicionModal, meta}) => {
       idindicador: metaAux.idindicador
     })
     cambiarEstado(false);
+    window.location.reload(true);
   }
   
 

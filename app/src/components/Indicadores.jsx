@@ -15,7 +15,7 @@ export default function Indicadores() {
       setIndicadores(res.data);
     };
     fetchPosts();
-  }, );
+  }, []);
 
   return (
     <div className="container">

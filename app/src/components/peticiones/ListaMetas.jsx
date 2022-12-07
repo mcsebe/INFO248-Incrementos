@@ -42,11 +42,14 @@ class ListaMetas extends React.Component {
                 fechasMetasA: [],
                 fechasMetasD: [],
               })
-            swal({
-                text: "Las solicitudes se aceptaron correctamente",
+              swal({
+                text: "'Solicitud enviada correctamente'",
                 icon: "success",
                 timer: "2000"
-            })
+              }).then(function(){ 
+                window.location.reload(true);
+                }
+              )
         }
     })
   }
@@ -77,11 +80,14 @@ class ListaMetas extends React.Component {
                 idMetasA: [],
                 idMetasD: []
               })
-            swal({
-                text: "Las solicitudes se rechazaron correctamente",
+              swal({
+                text: "'Solicitud enviada correctamente'",
                 icon: "success",
                 timer: "2000"
-            })
+              }).then(function(){ 
+                window.location.reload(true);
+                }
+              )
         }
     })
   }

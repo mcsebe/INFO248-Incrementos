@@ -25,7 +25,7 @@ export default function  TablaIndicadores() {
       setIndicadores(res.data);
     };
     fetchPosts();
-  }, );
+  }, [] );
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -33,7 +33,7 @@ export default function  TablaIndicadores() {
       setEjes(res.data);
     };
     fetchPosts();
-  }, );
+  }, []);
   
 
   return (
@@ -52,11 +52,7 @@ export default function  TablaIndicadores() {
       {indicadores.map((indicador) => (
         indicador.Aprobado === 2 ?
         <tr key={indicador.id} style={{backgroundColor: "#EEEDED", color: "#A7A4A4"}}>
-          {indicador.antiguaid === '0'?
-            <td>{indicador.id}</td>
-            :
-            <td>{indicador.antiguaid}</td>
-          }
+          <td>{indicador.id}</td>
           <td>{indicador.nombre}</td>
           <td>{indicador.TipoIndicador}</td>
 
@@ -73,11 +69,7 @@ export default function  TablaIndicadores() {
       :
         indicador.Aprobado === 1 ?
           <tr key={indicador.id}>
-          {indicador.antiguaid === '0'?
             <td>{indicador.id}</td>
-            :
-            <td>{indicador.antiguaid}</td>
-          }
             <td>{indicador.nombre}</td>
             <td>{indicador.TipoIndicador}</td>
 
@@ -90,7 +82,7 @@ export default function  TablaIndicadores() {
     
             <td>{indicador.Responsable}</td>
 
-            {indicador.editando === 1?              
+            {indicador.Aprobado === 3?              
               <td>Editando ...</td>
             
               :

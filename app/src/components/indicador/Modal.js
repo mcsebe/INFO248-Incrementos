@@ -29,11 +29,11 @@ mostrarOverlay, posicionModal, indicador}) => {
       Frecuencia : indicadorAux.Frecuencia,
       Aprobado : 0,
       Peticion: "Editar",
-      antiguaid: "0",
       idAux: (indicadorAux.CalificacionCORFO.charAt(0) + indicadorAux.NumeroIndicador),
       Descripcion: indicadorAux.Descripcion,
     })
     cambiarEstado(false);
+    window.location.reload(true);
   }
   
 

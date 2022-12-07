@@ -16,7 +16,7 @@ export default function Metas() {
         setIndicadores(res.data);
       };
       fetchPosts();
-    }, );
+    }, []);
 
     useEffect(() => {
       const fetchPosts = async () => {
@@ -24,7 +24,7 @@ export default function Metas() {
         setMetas(res.data);
       };
       fetchPosts();
-    }, );
+    }, []);
 
   return (
     <div className="container">

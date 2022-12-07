@@ -14,7 +14,7 @@ export default function Datos() {
       setIndicadores(res.data);
     };
     fetchPosts();
-  }, );
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -22,7 +22,7 @@ export default function Datos() {
       setMetas(res.data);
     };
     fetchPosts();
-  }, );
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -30,7 +30,7 @@ export default function Datos() {
       setEjes(res.data);
     };
     fetchPosts();
-  }, );
+  }, []);
 
   return (
     <div className="container">

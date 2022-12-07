@@ -15,7 +15,7 @@ class metasServicios{
 
     async createMetas(res,req) {
         const D = Math.random().toString(36).substr(2,18);
-        const ADD_QUERY = `insert into metas values ('${D}','${req.body.idindicador}','${req.body.fecha}', ${req.body.cantidad}, 'Añadir', 0, 0, 0);`
+        const ADD_QUERY = `insert into metas values ('${D}','${req.body.idindicador}','${req.body.fecha}', ${req.body.cantidad}, 'Añadir', 0, '0');`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
             else res.send('addmetas')
@@ -63,9 +63,7 @@ class metasServicios{
         const solicitud = myArray[1];
         const now = myArray[2];
 
-        const D = Math.random().toString(36).substr(2,18);
-
-        const ADD_QUERY = `UPDATE metas SET antiguaid = idindicador, idindicador ='${D}',Aprobado = 2 WHERE id = '${id}' ;`
+        const ADD_QUERY = `UPDATE metas SET Aprobado = 2 WHERE id = '${id}' ;`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
@@ -81,9 +79,8 @@ class metasServicios{
     }
 
     async deleteMetasIndicador(res, req){
-        const D = Math.random().toString(36).substr(2,18);
 
-        const ADD_QUERY = `UPDATE metas SET idindicador ='${D}',Aprobado = 2, antiguaid = '${req.body.D}' WHERE idindicador = '${req.body.id}' OR antiguaid = '${req.body.id}';`
+        const ADD_QUERY = `UPDATE metas SET Aprobado = 2 WHERE idindicador = '${req.body.id}'`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
@@ -102,12 +99,12 @@ class metasServicios{
     async editarMeta(res,req) {
         const D = Math.random().toString(36).substr(2,18);
 
-        const ADD_QUERY = `INSERT INTO metas VALUES("${D}","${req.body.idindicador}", "${req.body.fecha}",${req.body.cantidad}, 'Editar', 0, '${req.body.id}', 0);`
+        const ADD_QUERY = `INSERT INTO metas VALUES("${D}","${req.body.idindicador}", "${req.body.fecha}",${req.body.cantidad}, 'Editar', 0, '${req.body.id}');`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
 
-        const ADD_QUERY2 = `UPDATE metas SET editando = 1 WHERE id = '${req.body.id}';`
+        const ADD_QUERY2 = `UPDATE metas SET Aprobado = 3 WHERE id = '${req.body.id}';`
         connection.query(ADD_QUERY2, (err) =>{
             if(err) console.log(err)
         })  
@@ -122,7 +119,7 @@ class metasServicios{
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
-        const ADD_QUERY2 = `UPDATE metas SET editando = 0 WHERE id = '${idantigua}';`
+        const ADD_QUERY2 = `UPDATE metas SET Aprobado = 1 WHERE id = '${idantigua}';`
         connection.query(ADD_QUERY2, (err) =>{
             if(err) console.log(err)
         })

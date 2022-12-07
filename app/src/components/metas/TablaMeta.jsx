@@ -25,7 +25,7 @@ export default function TablaMeta(props) {
       setIndicadores(res.data);
     };
     fetchPosts();
-  },);
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -33,7 +33,7 @@ export default function TablaMeta(props) {
       setMetas(res.data);
     };
     fetchPosts();
-  },);
+  }, []);
 
   return (
     <table>
@@ -48,28 +48,13 @@ export default function TablaMeta(props) {
         {metas.map((meta) => (
           meta.Aprobado === 2 ?
             <tr style={{ backgroundColor: "#EEEDED", color: "#A7A4A4" }}>
-              {meta.antiguaid === '0' ?
-                <>
-                  {indicadores.map((indicador) => (
-                    indicador.id === meta.idindicador ?
-                      <td>{indicador.id}</td>
-                      :
-                      <></>
-                  ))}
-                </>
-                :
-                <>
-                  {indicadores.map((indicador) => (
-                    indicador.id === meta.antiguaid && indicador.antiguaid === '0' ?
-                      <td>{indicador.id}</td>
-                      :
-                      indicador.id === meta.antiguaid ?
-                        <td>{indicador.antiguaid}</td>
-                        :
-                        <></>
-                  ))}
-                </>
-              }
+
+              {indicadores.map((indicador) => (
+                indicador.id === meta.idindicador ?
+                  <td>{indicador.id}</td>
+                  :
+                  <></>
+              ))}
               <td>{meta.fecha}</td>
               <td>{meta.cantidad}</td>
               <td>Eliminado</td>
@@ -81,7 +66,7 @@ export default function TablaMeta(props) {
                 <td>{meta.idindicador}</td>
                 <td>{meta.fecha}</td>
                 <td>{meta.cantidad}</td>
-              {meta.editando === 1?            
+              {meta.Aprobado === 3?            
                 <td>Editando ...</td>
                 :
                 <>

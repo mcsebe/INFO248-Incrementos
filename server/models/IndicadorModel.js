@@ -16,7 +16,7 @@ class indicadoresServicios{
     }
 
     async createIndicador(res,req) {
-        const ADD_QUERY = `insert into indicadores values ('${req.body.id}','${req.body.CalificacionCORFO}','${req.body.NumeroIndicador}','${req.body.MisionUniversitaria}','${req.body.nombre}','${req.body.TipoIndicador}',${req.body.eje},'${req.body.Unidad}','${req.body.FuenteInformacion}', '${req.body.Responsable}', '${req.body.Frecuencia}', 0, 'Añadir',0,null, '${req.body.Descripcion}', 0)`
+        const ADD_QUERY = `insert into indicadores values ('${req.body.id}','${req.body.CalificacionCORFO}',${req.body.NumeroIndicador},'${req.body.MisionUniversitaria}','${req.body.nombre}','${req.body.TipoIndicador}',${req.body.eje},'${req.body.Unidad}','${req.body.FuenteInformacion}', '${req.body.Responsable}', '${req.body.Frecuencia}', 0, 'Añadir',null, '${req.body.Descripcion}')`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
             else res.send('addindicadores')
@@ -53,12 +53,12 @@ class indicadoresServicios{
         })   
     }
     async editarIndicador(res,req) {
-        const ADD_QUERY = `INSERT INTO indicadores VALUES("${req.body.idAux} E","${req.body.CalificacionCORFO}", "${req.body.NumeroIndicador}","${req.body.MisionUniversitaria}","${req.body.nombre}","${req.body.TipoIndicador}","${req.body.eje}","${req.body.Unidad}","${req.body.FuenteInformacion}","${req.body.Responsable}","${req.body.Frecuencia}","${req.body.Aprobado}","${req.body.Peticion}","${req.body.antiguaid}","${req.body.id}","${req.body.Descripcion}", 0);`
+        const ADD_QUERY = `INSERT INTO indicadores VALUES("${req.body.idAux} E","${req.body.CalificacionCORFO}", ${req.body.NumeroIndicador},"${req.body.MisionUniversitaria}","${req.body.nombre}","${req.body.TipoIndicador}","${req.body.eje}","${req.body.Unidad}","${req.body.FuenteInformacion}","${req.body.Responsable}","${req.body.Frecuencia}","${req.body.Aprobado}","${req.body.Peticion}","${req.body.id}","${req.body.Descripcion}");`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
 
-        const ADD_QUERY2 = `UPDATE indicadores SET editando = 1 WHERE id = '${req.body.id}';`
+        const ADD_QUERY2 = `UPDATE indicadores SET Aprobado = 3 WHERE id = '${req.body.id}';`
         connection.query(ADD_QUERY2, (err) =>{
             if(err) console.log(err)
         })  
@@ -73,7 +73,7 @@ class indicadoresServicios{
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
-        const ADD_QUERY2 = `UPDATE indicadores SET editando = 0 WHERE id = '${idantigua}';`
+        const ADD_QUERY2 = `UPDATE indicadores SET Aprobado = 1 WHERE id = '${idantigua}';`
         connection.query(ADD_QUERY2, (err) =>{
             if(err) console.log(err)
         })
@@ -107,21 +107,17 @@ class indicadoresServicios{
         const solicitud = myArray[1];
         const now = myArray[2];
 
-        const D = Math.random().toString(36).substr(2,18);
-
-        sMetas.deleteMetasIndicador(0,{body: { id: `${id}`, D: `${D}`}} ); 
-
-        const ADD_QUERY = `UPDATE indicadores SET id ='${D}',Aprobado = 2, antiguaid = '${id}' WHERE id = '${id}';`
+        const ADD_QUERY = `UPDATE indicadores SET Aprobado = 2 WHERE id = '${id}';`
         connection.query(ADD_QUERY, (err) =>{
             if(err) console.log(err)
         })
 
-        sHistorial.setHistorial(0,{body: { D: D, id: id, tipo: 1}} ); 
+        sMetas.deleteMetasIndicador(0,{body: { id: id}} ); 
 
         if(solicitud === 'Eliminar'){
-            sHistorial.createHistorial(0,{body: { id_imm: `${D}`, tipo: 1, solicitud: 'Eliminar', estado: 'Aprobado', fecha: now }} ); 
+            sHistorial.createHistorial(0,{body: { id_imm: `${id}`, tipo: 1, solicitud: 'Eliminar', estado: 'Aprobado', fecha: now }} ); 
         }else{
-            sHistorial.createHistorial(0,{body: { id_imm: `${D}`, tipo: 1, solicitud: 'Añadir', estado: 'Rechazado', fecha: now }} );   
+            sHistorial.createHistorial(0,{body: { id_imm: `${id}`, tipo: 1, solicitud: 'Añadir', estado: 'Rechazado', fecha: now }} );   
         }
 
     }

@@ -29,7 +29,7 @@ class AddIndicador extends React.Component {
   onAddClick = () => {
     var usado = false;
 
-    this.props.indicadores.map(x => x.id === (this.state.CalificacionCORFO.charAt(0) + this.state.NumeroIndicador) ?
+    this.props.indicadores.map(x => x.NumeroIndicador === parseInt( this.state.NumeroIndicador, 10)?
       usado = true
       :x)
 
@@ -136,7 +136,10 @@ class AddIndicador extends React.Component {
         text: "'Solicitud enviada correctamente'",
         icon: "success",
         timer: "2000"
-      })
+      }).then(function(){ 
+        window.location.reload(true);
+        }
+      )
 
     }
   }
@@ -159,7 +162,7 @@ class AddIndicador extends React.Component {
           <input type="text" value={this.state.NumeroIndicador} style={{borderColor: 'red'}} onChange={e => this.setState({
           NumeroIndicador: e.target.value
           })}/>
-          <p style={{fontSize: '12px'}}>Ya existe un Indicador con esa id</p>
+          <p style={{fontSize: '12px'}}>Ya existe un Indicador con ese número</p>
           </>
         : this.state.num?
           <>
