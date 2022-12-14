@@ -3,7 +3,7 @@ const config = {
       host: "localhost",
       user: "root",
       password: "1306",
-      database: "nodedb2",
+      database: "innoving",
     },
     listPerPage: 10,
   };

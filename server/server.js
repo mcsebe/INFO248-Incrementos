@@ -7,6 +7,7 @@ const rIndicadores = require('./routes/rIndicadores');
 const rMetas = require('./routes/rMetas');
 const rHistorial = require('./routes/rHistorial')
 const rEje = require('./routes/rEjes')
+const rVariable = require('./routes/rVariable')
 
 const app = express()
 
@@ -20,6 +21,8 @@ app.use('/metas', rMetas);
 app.use('/historial', rHistorial)
 
 app.use('/ejes', rEje)
+
+app.use('/variables', rVariable)
 
 app.listen(4000, ()=> {
     console.log('Running on port 4000')

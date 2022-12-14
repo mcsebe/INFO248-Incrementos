@@ -4,7 +4,7 @@ const pool = mariadb.createPool({
     host: 'localhost',
     user: 'root',
     password: '1306',
-    database: 'nodedb2'
+    database: 'innoving'
 })
 
 async function main(){
